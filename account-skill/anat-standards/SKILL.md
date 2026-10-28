@@ -11,6 +11,7 @@ description: טוען את ההנחיות הכלליות של ענת מהבית 
 1. קרא את שני הקבצים העדכניים:
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/CLAUDE.md
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/.claude/skills/anat-app-builder/SKILL.md
+   - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/.claude/skills/anat-design-language/SKILL.md (שפת העיצוב ורכיבים מוכנים)
 2. בקוד: אם הריפו כולל `.claude/skills/anat-app-builder/SKILL.md` ישן, הגרסה מ-Claude-GH גוברת.
 3. בכתיבת טקסט שמודל AI מייצר באפליקציה: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/docs/ai-text-standard.md
 
@@ -19,7 +20,8 @@ description: טוען את ההנחיות הכלליות של ענת מהבית 
 - עברית, RTL, בלי אייקונים. פתיחה "מה אני הולך לעשות", סיום "מה עשיתי, מה למדתי, מה אני ממליץ".
 - רמה 999: מעבר לבקשה, השלמה מלאה, טקסט מזוקק ומודגש, חוויתיות, DNA ייחודי בתוך השפה הקבועה.
 - סרגל עליון קבוע, שם האפליקציה לבית, כפתור לוגו יחיד `<ai-menu>`, כפתורים מרובעים ולחיצים.
-- רואים לפני שפורסים. בלי תשלום. מיזוג ל-main אחרי בדיקה ירוקה.
+- רואים לפני שפורסים. בלי תשלום. מיזוג ל-main אחרי בדיקה ירוקה, ומיד פריסה ל-Vercel.
+- כל אפליקציה מתועדת באפליקציית האפליקציות (aoa_apps), עם כתובת GitHub וכתובת Vercel.
 
 ## תיקון חדש של ענת
 תיקון כללי נכנס רק ל-Claude-GH (CLAUDE.md והסקיל), לא לעותקים. תיקון של אפליקציה אחת נכנס ל-CLAUDE.md שלה.
