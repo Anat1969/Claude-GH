@@ -1,0 +1,62 @@
+/* כתבה מוזיאלית. נשען על base.css (אסימונים, .num, mark.insight, .label, .press). צבעים מתעודת ה-DNA. */
+.ft { max-width: 1080px; margin: 0 auto; padding: 0 16px 64px; color: var(--ink); }
+.ft-head { padding: 40px 0 24px; }
+.ft-kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 12px; }
+.ft-title { font-size: clamp(36px, 6vw, 72px); line-height: 1.02; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 16px; max-width: 16ch; }
+.ft-deck { font-size: clamp(18px, 2.2vw, 24px); line-height: 1.5; color: var(--ink-soft); margin: 0; max-width: 40ch; }
+
+/* פריסות תמונה */
+.ft figure { margin: 0; }
+.ft img { display: block; width: 100%; height: auto; object-fit: contain; background: var(--rule-soft); }
+.ft-caption { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); padding: 8px 0 0; }
+.ft-full { position: relative; margin: 24px -16px 32px; }
+.ft-full img { aspect-ratio: 16 / 9; object-fit: cover; }
+.ft-full-shade { position: absolute; inset: auto 0 28px 0; padding: 0 32px; background: linear-gradient(transparent, rgba(10, 10, 9, .72) 40%); color: #fff; }
+.ft-full-shade .ft-deck, .ft-full-shade .ft-kicker { color: rgba(255, 255, 255, .85); }
+.ft-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; margin: 24px 0 32px; }
+.ft-strip { margin: 8px 0 32px; }
+.ft-collage { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin: 8px 0 32px; }
+.ft-collage img:nth-child(1) { grid-column: span 4; grid-row: span 2; }
+.ft-collage img:nth-child(n+2) { grid-column: span 2; }
+.ft-collage .ft-caption { grid-column: 1 / -1; }
+
+/* טור קריאה */
+.ft-col { max-width: 68ch; margin: 0 auto; }
+.ft-p { font-size: 19px; line-height: 1.85; margin: 0 0 20px; }
+.ft-drop::first-letter { float: right; font-size: 4.2em; line-height: .85; font-weight: 700; margin: 6px 0 0 12px; color: var(--accent, var(--bank)); }
+
+.ft-quote { margin: 40px -8% 40px; padding: 0 8%; border-right: 6px solid var(--accent, var(--bank)); }
+.ft-quote p { font-size: clamp(24px, 3vw, 34px); line-height: 1.35; font-weight: 500; margin: 0 0 12px; }
+.ft-quote cite { font-style: normal; font-family: var(--mono); font-size: 13px; color: var(--ink-mute); }
+
+.ft-insight { background: #FFF9D6; border-right: 4px solid #E8C400; padding: 16px 20px; margin: 32px 0; box-shadow: var(--shadow-1); }
+.ft-insight p { margin: 6px 0 0; font-size: 20px; line-height: 1.6; font-weight: 500; }
+
+.ft-haiku { display: grid; gap: 4px; justify-items: center; text-align: center; margin: 48px 0; padding: 32px 16px; border-block: 1px solid var(--rule); font-size: 22px; line-height: 1.6; font-weight: 300; letter-spacing: .02em; }
+.ft-haiku small { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); margin-top: 12px; letter-spacing: 0; }
+
+.ft-links { display: grid; gap: 10px; margin: 40px 0; }
+.ft-link { display: grid; gap: 6px; padding: 16px 18px; text-decoration: none; text-align: right; font-size: 15px; line-height: 1.6; }
+.ft-link-insight { font-size: 17px; color: var(--ink); }
+
+.ft-post { margin: 40px 0; padding: 24px; background: var(--sheet); box-shadow: var(--shadow-2); border-top: 4px solid var(--ink); }
+.ft-post p { font-size: 17px; line-height: 1.75; margin: 8px 0 0; }
+
+.ft-sources { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--ink-soft); }
+.ft-sources ol { padding-inline-start: 20px; margin: 8px 0 0; }
+.ft-sources a { color: inherit; }
+
+@media (max-width: 720px) {
+  .ft-split { grid-template-columns: minmax(0, 1fr); }
+  .ft-quote { margin-inline: 0; padding-inline: 16px 0; }
+  .ft-full-shade { padding: 0 16px; }
+  .ft-collage img:nth-child(1) { grid-column: 1 / -1; }
+  .ft-collage img:nth-child(n+2) { grid-column: span 3; }
+}
+@media print {
+  .topbar, ai-menu, .press:not(.ft-link) { display: none !important; }
+  .ft { max-width: none; padding: 0; }
+  .ft-full { margin: 0 0 16px; }
+  .ft-link, .ft-post, .ft-insight { box-shadow: none; break-inside: avoid; }
+  @page { size: A4; margin: 18mm; }
+}

@@ -1,0 +1,248 @@
+<title>העיר כטקסט קריא</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;800&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* פריסה: קטלוג תערוכה. כותרת ענקית ומפה מנוסחת זו מול זו, טור קריאה צר, והערות בשוליים. */
+:root {
+  --paper: #F6F4EF;      /* נייר קטלוג */
+  --sheet: #FFFFFF;
+  --ink: #16191C;        /* דיו */
+  --ink-soft: #4E555B;
+  --ink-mute: #7A8086;
+  --rule: #DAD6CC;
+  --sea: #1F5F7A;        /* ים: קצה העיר, הצבע המוביל */
+  --sand: #C9A86A;       /* חול: רבעים */
+  --path: #B5452B;       /* דרכים */
+  --marker: #FFE45C;     /* מרקר תובנה */
+  --marker-ink: #16191C;
+  --shadow: 0 1px 0 rgba(22,25,28,.06), 0 10px 28px rgba(22,25,28,.10);
+  --display: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --body: "IBM Plex Sans Hebrew", "Arial Hebrew", "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", "IBM Plex Sans Hebrew", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #121517; --sheet: #1A1E21; --ink: #ECE9E2; --ink-soft: #B7B2A8; --ink-mute: #8D8981; --rule: #2E3337;
+  --sea: #5BA8C9; --sand: #D8BC86; --path: #E07A5F; --marker: #E8C93A; --marker-ink: #121517;
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.45); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #121517; --sheet: #1A1E21; --ink: #ECE9E2; --ink-soft: #B7B2A8; --ink-mute: #8D8981; --rule: #2E3337;
+  --sea: #5BA8C9; --sand: #D8BC86; --path: #E07A5F; --marker: #E8C93A; --marker-ink: #121517;
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.45); color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); direction: rtl;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 72px; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+b, strong { font-weight: 600; }
+mark { background: linear-gradient(transparent 42%, var(--marker) 42%, var(--marker) 92%, transparent 92%); color: inherit; padding: 0 2px; }
+.num { font-family: var(--mono); font-weight: 600; unicode-bidi: isolate; direction: ltr; }
+.label { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--ink-mute); text-transform: uppercase; }
+
+/* כותרת התערוכה */
+.masthead { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--ink); padding-block: 20px 12px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: end; padding-block: 40px 32px; border-bottom: 1px solid var(--rule); }
+.kicker { margin-bottom: 18px; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 8.4vw, 104px); line-height: .92; letter-spacing: -0.02em; margin: 0 0 22px; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--sea); }
+.deck { font-family: var(--display); font-weight: 300; font-size: clamp(20px, 2.4vw, 27px); line-height: 1.45; color: var(--ink-soft); margin: 0; max-width: 30ch; text-wrap: balance; }
+.byline { margin-top: 22px; display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* המפה: חמשת היסודות של לינץ' על עיר חוף */
+figure { margin: 0; }
+.map { background: var(--sheet); box-shadow: var(--shadow); padding: 14px; }
+.map svg { display: block; width: 100%; height: auto; }
+figcaption { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); padding-top: 10px; line-height: 1.6; }
+.legend { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 6px 14px; font-size: 13px; }
+.legend li { display: flex; gap: 8px; align-items: center; }
+.sw { width: 18px; height: 10px; flex: 0 0 auto; display: block; }
+
+/* גוף הכתבה */
+.body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 68ch) minmax(0, 1fr); padding-block: 40px 0; }
+.col { grid-column: 2; min-width: 0; }
+.col > p { font-size: 19px; line-height: 1.85; margin: 0 0 4px; }
+.col > p + p { margin-top: 14px; }
+.drop::first-letter { float: right; font-family: var(--display); font-weight: 800; font-size: 5.2em; line-height: .8; margin: 8px 0 0 14px; color: var(--sea); }
+h2 { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3.2vw, 36px); line-height: 1.2; margin: 48px 0 14px; text-wrap: balance; }
+.gloss { display: block; font-size: 13px; color: var(--ink-mute); margin-top: 2px; }
+
+.quote { margin: 48px -10% 48px; padding: 6px 28px 6px 0; border-right: 6px solid var(--sea); }
+.quote p { font-family: var(--display); font-weight: 300; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.3; margin: 0 0 10px; }
+.quote .orig { font-family: var(--display); font-size: 17px; color: var(--ink-soft); direction: ltr; text-align: left; font-style: italic; margin: 0 0 10px; }
+.quote cite { font-style: normal; font-family: var(--mono); font-size: 13px; color: var(--ink-mute); }
+
+.elements { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 18px 0 8px; }
+.el { background: var(--sheet); box-shadow: var(--shadow); padding: 14px 16px; border-top: 4px solid var(--c); }
+.el h3 { margin: 0 0 2px; font-size: 17px; font-weight: 600; }
+.el .en { font-family: var(--mono); font-size: 11px; color: var(--ink-mute); }
+.el p { margin: 8px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+
+.insight { background: var(--sheet); border-right: 5px solid var(--marker); box-shadow: var(--shadow); padding: 18px 22px; margin: 40px 0; }
+.insight p { margin: 8px 0 0; font-family: var(--display); font-size: 25px; line-height: 1.45; font-weight: 500; }
+.insight mark { color: var(--marker-ink); }
+
+.haiku { display: grid; justify-items: center; gap: 2px; text-align: center; margin: 56px 0; padding-block: 36px; border-block: 1px solid var(--rule); }
+.haiku span { font-family: var(--display); font-weight: 300; font-size: clamp(24px, 3vw, 32px); line-height: 1.5; }
+.haiku small { margin-top: 14px; }
+
+.links { display: grid; gap: 10px; margin: 16px 0 0; }
+.link { display: grid; gap: 6px; background: var(--sheet); box-shadow: var(--shadow); padding: 16px 18px; border-right: 4px solid var(--c); transition: transform .15s ease, box-shadow .15s ease; }
+.link:hover { transform: translateY(-2px); }
+.link .row { font-size: 15px; line-height: 1.6; }
+.link .ins { font-size: 17px; }
+
+.post { margin: 48px 0 0; background: var(--sheet); box-shadow: var(--shadow); border-top: 4px solid var(--ink); padding: 22px 24px; }
+.post p { font-size: 17px; line-height: 1.8; margin: 10px 0 0; }
+.post .sig { font-family: var(--mono); font-size: 13px; color: var(--ink-mute); }
+
+.sources { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+.sources ol { margin: 8px 0 0; padding-inline-start: 20px; }
+.sources a { color: inherit; }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .body { grid-template-columns: minmax(0, 1fr); }
+  .col { grid-column: 1; }
+  .quote { margin-inline: 0; padding-right: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media print { body { background: #fff; } .link:hover { transform: none; } @page { size: A4; margin: 16mm; } }
+</style>
+
+<div class="wrap">
+  <div class="masthead">
+    <span class="label">אוסף ידע · קריאה ויזואלית</span>
+    <span class="label">דף דוגמה לשכבת הידע המוזיאלית</span>
+  </div>
+
+  <section class="hero">
+    <div>
+      <div class="label kicker">כתבה · עיר ותודעה</div>
+      <h1>העיר היא <em>טקסט</em> שקוראים בעיניים</h1>
+      <p class="deck">לפני שקוראים שלט, הגוף כבר יודע איפה הים, איפה המרכז ואיך יוצאים. מה שמוצג טוב נקרא בלי מילים.</p>
+      <div class="byline"><span class="label">אד' ענת שטיבלמן</span><span class="label">אשדוד (Ashdod)</span></div>
+    </div>
+
+    <figure class="map">
+      <svg viewBox="0 0 520 380" role="img" aria-label="תרשים של עיר חוף עם חמשת יסודות הדימוי של קווין לינץ': קצה, רבעים, דרכים, צמתים וסמן">
+        <rect x="0" y="0" width="520" height="380" fill="var(--sheet)"/>
+        <!-- קצה: הים -->
+        <path d="M0 0 H120 C104 70 132 140 108 210 C90 270 118 330 100 380 H0 Z" fill="var(--sea)" opacity=".85"/>
+        <path d="M120 0 C104 70 132 140 108 210 C90 270 118 330 100 380" fill="none" stroke="var(--sea)" stroke-width="5"/>
+        <!-- רבעים -->
+        <g fill="var(--sand)" opacity=".38" stroke="var(--sand)" stroke-width="1.5">
+          <rect x="160" y="30" width="120" height="96"/><rect x="292" y="30" width="96" height="96"/><rect x="400" y="30" width="96" height="96"/>
+          <rect x="160" y="140" width="96" height="104"/><rect x="268" y="140" width="120" height="104"/><rect x="400" y="140" width="96" height="104"/>
+          <rect x="160" y="258" width="120" height="96"/><rect x="292" y="258" width="96" height="96"/><rect x="400" y="258" width="96" height="96"/>
+        </g>
+        <g font-family="IBM Plex Sans Hebrew, sans-serif" font-size="22" font-weight="600" fill="var(--ink)" text-anchor="middle">
+          <text x="220" y="86">א</text><text x="340" y="86">ב</text><text x="448" y="86">ג</text>
+          <text x="208" y="200">ד</text><text x="328" y="200">ה</text><text x="448" y="200">ו</text>
+          <text x="220" y="314">ז</text><text x="340" y="314">ח</text><text x="448" y="314">ט</text>
+        </g>
+        <!-- דרכים -->
+        <g fill="none" stroke="var(--path)" stroke-width="6" stroke-linecap="square">
+          <path d="M128 133 H510"/><path d="M128 251 H510"/><path d="M394 0 V380"/>
+        </g>
+        <!-- צמתים -->
+        <g fill="var(--sheet)" stroke="var(--ink)" stroke-width="3">
+          <rect x="384" y="123" width="20" height="20"/><rect x="384" y="241" width="20" height="20"/>
+        </g>
+        <!-- סמן: הנמל -->
+        <g transform="translate(70 300)">
+          <rect x="-18" y="-18" width="36" height="36" fill="var(--ink)"/>
+          <path d="M-9 8 V-6 H9 V8" fill="none" stroke="var(--sheet)" stroke-width="3"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--sheet)"><text x="56" y="30" text-anchor="middle" direction="rtl">הים · קצה</text></g>
+      </svg>
+      <ul class="legend" aria-label="מקרא">
+        <li><span class="sw" style="background:var(--sea)"></span>קצה: קו החוף</li>
+        <li><span class="sw" style="background:var(--sand);opacity:.6"></span>רבעים: אותיות</li>
+        <li><span class="sw" style="background:var(--path)"></span>דרכים</li>
+        <li><span class="sw" style="background:var(--sheet);outline:3px solid var(--ink);outline-offset:-3px"></span>צמתים</li>
+        <li><span class="sw" style="background:var(--ink)"></span>סמן: הנמל</li>
+      </ul>
+      <figcaption>איור מופשט, לא מפה בקנה מידה. חמשת היסודות לפי קווין לינץ' (Kevin Lynch), 1960, על דגם של עיר חוף מתוכננת ברבעים.</figcaption>
+    </figure>
+  </section>
+
+  <section class="body">
+    <div class="col">
+      <p class="drop">בשנת <span class="num">1960</span> שאל האורבניסט <b>קווין לינץ' (Kevin Lynch)</b> שאלה פשוטה: מה אנשים זוכרים מהעיר שלהם?</p>
+      <p>הוא ביקש מתושבי <b>בוסטון (Boston)</b>, <b>ג'רזי סיטי (Jersey City)</b> ו<b>לוס אנג'לס (Los Angeles)</b> לשרטט את העיר מהזיכרון.</p>
+      <p>השרטוטים חזרו על אותם <b>חמישה יסודות</b>. עיר שקל לשרטט מהזיכרון היא עיר שקל להתמצא בה.</p>
+
+      <blockquote class="quote">
+        <p>"להתבונן בערים יכול לתת הנאה מיוחדת, גם כשהמראה שגרתי."</p>
+        <p class="orig">"Looking at cities can give a special pleasure, however commonplace the sight may be."</p>
+        <cite>קווין לינץ', The Image of the City, MIT Press, ‏1960, משפט הפתיחה. התרגום כאן.</cite>
+      </blockquote>
+
+      <h2>חמישה יסודות, חמש שאלות לכל מסך</h2>
+      <p>היסודות של לינץ' הם גם <b>מערכת סימון</b> לכל ממשק שמציג מידע. לכל אחד יש תפקיד אחד וסימן אחד.</p>
+      <div class="elements">
+        <div class="el" style="--c:var(--path)"><h3>דרכים</h3><span class="en">Paths</span><p>איך זזים. בממשק: <b>הניווט</b>, ומסלול הפעולה מקלט לפלט.</p></div>
+        <div class="el" style="--c:var(--sea)"><h3>קצוות</h3><span class="en">Edges</span><p>איפה נגמר. בממשק: <b>גבולות של קטע</b>, צל ושכבה.</p></div>
+        <div class="el" style="--c:var(--sand)"><h3>רבעים</h3><span class="en">Districts</span><p>אזור עם אופי משלו. בממשק: <b>קבוצה עם שם</b> וצבע של נושא.</p></div>
+        <div class="el" style="--c:var(--ink)"><h3>צמתים</h3><span class="en">Nodes</span><p>נקודת החלטה. בממשק: <b>כפתור תוכן</b> בולט, שמבצע פעולה אחת.</p></div>
+        <div class="el" style="--c:var(--ink-soft)"><h3>סמנים</h3><span class="en">Landmarks</span><p>מה שרואים מרחוק. בממשק: <b>שורת התובנה</b> והמספר המרכזי.</p></div>
+      </div>
+
+      <h2>אשדוד כתובה באותיות</h2>
+      <p>אשדוד תוכננה ונבנתה מאמצע שנות ה-<span class="num">50</span> ב<b>רבעים</b> שנקראים באותיות: רובע א', רובע ב' וכן הלאה.</p>
+      <p>שם הרובע הוא <b>סימון</b>: הוא אומר איפה אתה בתוך סדר.<span class="gloss">סימון: סימן שיש לו שם ומשמעות, לא רק צורה.</span></p>
+      <p>הים הוא <b>קצה</b> שאי אפשר לטעות בו, והנמל הוא <b>סמן</b> שרואים מכל מקום.</p>
+
+      <aside class="insight">
+        <span class="label">תובנה</span>
+        <p><mark>מה שמסומן בשם ובמקום קבוע נקרא בלי מאמץ.</mark></p>
+      </aside>
+
+      <aside class="haiku" aria-label="הייקו">
+        <span>גל נוגע בחוף</span>
+        <span>רחוב לוחש את שמו</span>
+        <span>העיר זוכרת</span>
+        <small class="label">ההייקו מאיר: קצה, דרך וזיכרון. שלושה מחמשת היסודות בשלוש שורות.</small>
+      </aside>
+
+      <h2>חיבורים</h2>
+      <div class="links">
+        <div class="link" style="--c:var(--sea)">
+          <span class="row"><b>הכלל:</b> קצה ברור מקטין את הצורך בשלט (לינץ', 1960).</span>
+          <span class="ins"><mark>גבול חד בין קטעים עובד כמו הים בעיר.</mark></span>
+          <span class="row"><b>מה עושים:</b> לכל קטע במסך מסגרת אחת, צל אחד ושם אחד.</span>
+        </div>
+        <div class="link" style="--c:var(--sand)">
+          <span class="row"><b>הכלל:</b> רובע מזוהה לפי אופי אחיד, צבע, חומר וקצב.</span>
+          <span class="ins"><mark>צבע לנושא הוא רובע במסך.</mark></span>
+          <span class="row"><b>מה עושים:</b> גוון אחד לכל נושא, באותה עוצמה בכל מקום שבו הוא מופיע.</span>
+        </div>
+        <div class="link" style="--c:var(--path)">
+          <span class="row"><b>הכלל:</b> דרך זוכרים כשיש לה כיוון ויעד.</span>
+          <span class="ins"><mark>ניווט בלי יעד גלוי הוא רחוב בלי סוף.</mark></span>
+          <span class="row"><b>מה עושים:</b> פירורי לחם, ושם הדף בולט בכל מסך.</span>
+        </div>
+      </div>
+
+      <section class="post" aria-label="פוסט">
+        <span class="label">פוסט</span>
+        <p><b>אנשים לא קוראים שלטים. הם קוראים ערים.</b></p>
+        <p>ב-<span class="num">1960</span> קווין לינץ' ביקש מתושבים לשרטט את העיר שלהם מהזיכרון. כולם, בלי לתאם, שרטטו אותם חמישה דברים: דרכים, קצוות, רבעים, צמתים וסמנים.</p>
+        <p>באשדוד זה כתוב במפה: רבעים באותיות, ים כקצה, נמל כסמן.</p>
+        <p>אותו כלל עובד בכל מסך שמציג מידע. <mark>מה שמסומן בשם ובמקום קבוע, נקרא בלי מאמץ.</mark></p>
+        <p>מבחן לשבוע הזה: האם מישהו יכול לשרטט מהזיכרון את המסך החשוב ביותר שלכם?</p>
+        <p class="sig">אד' ענת שטיבלמן</p>
+      </section>
+
+      <footer class="sources">
+        <span class="label">מקורות</span>
+        <ol>
+          <li>Kevin Lynch, <i>The Image of the City</i>, MIT Press, 1960.</li>
+          <li>על הרבעים באשדוד ושמותיהם: <a href="https://he.wikipedia.org/wiki/%D7%90%D7%A9%D7%93%D7%95%D7%93">ויקיפדיה, ערך אשדוד</a>.</li>
+          <li>האיור: שרטוט מופשט בקוד, ברוח היסודות של לינץ'. לא מפה בקנה מידה.</li>
+        </ol>
+      </footer>
+    </div>
+  </section>
+</div>
