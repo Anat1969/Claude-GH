@@ -21,7 +21,7 @@ description: טוען את ההנחיות הכלליות של ענת מהבית 
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/schemas.md
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/ux.md
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/design.md
-5. אם יש גישה ל-Google Drive: קרא גם את הקבצים בתיקייה `Claude-GH תור כללים` (חוץ מתת־התיקייה `נקלט`). אלה כללים שנכנסו משיחות אחרות ועוד לא עברו לריפו. הם תקפים כבר עכשיו.
+5. אם יש גישה ל-Google Drive: קרא גם את הקבצים בתיקייה `Claude-GH תור כללים` (parentId `1s2vB4nm5-6jPY00MtFDvItF6gOzSwhQY`, https://drive.google.com/drive/folders/1s2vB4nm5-6jPY00MtFDvItF6gOzSwhQY) (חוץ מתת־התיקייה `נקלט`). אלה כללים שנכנסו משיחות אחרות ועוד לא עברו לריפו. הם תקפים כבר עכשיו.
 
 ## אם הקריאה נכשלה
 עבוד לפי התמצית הזו, ואמור לענת במשפט אחד שהקריאה נכשלה:
@@ -40,7 +40,7 @@ description: טוען את ההנחיות הכלליות של ענת מהבית 
 2. **ניסוח:** שורה אחת בציווי: `- <כלל>. (DD.MM.YYYY, <נושא השיחה>)`.
 3. **כתיבה:**
    - ב-Code: קומיט לקובץ התחום ב-`rules/` של Claude-GH (כלל אפליקציות: ל-CLAUDE.md ולסקיל), ומיזוג ל-main.
-   - ב-Chat וב-Cowork: צור קובץ טקסט חדש בתיקיית Drive `Claude-GH תור כללים` (צור אותה אם אינה קיימת). שם הקובץ: `<תחום> YYYY-MM-DD <3 מילים>`. התוכן: שורת הכלל.
+   - ב-Chat וב-Cowork: צור קובץ טקסט חדש בתיקיית Drive `Claude-GH תור כללים`, עם `parentId` `1s2vB4nm5-6jPY00MtFDvItF6gOzSwhQY`. שם הקובץ: `<תחום> YYYY-MM-DD <3 מילים>`. התוכן: שורת הכלל.
    - אם אין גישה ל-Drive: הצג לענת את שורת הכלל כטקסט מוכן להדבקה, ואת הקובץ ב-`rules/` שאליו היא שייכת.
 4. **אישור לענת:** שורה אחת: "נשמר ככלל ב-<מקום>. יחול בכל שיחה חדשה."
 5. **סתירה:** כלל חדש מחליף כלל ישן שסותר אותו, לא מצטרף אליו.
