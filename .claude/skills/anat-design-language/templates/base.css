@@ -1,6 +1,6 @@
 /* בסיס השפה של ענת. מחליפים רק את בלוק הצבעים (שכבה ייחודית), כל השאר קבוע. */
 :root {
-  --paper: #FAFAF8;      /* חול־נייר: רקע */
+  --paper: #FFFFFF;      /* רקע לבן (סעיף 2.9 ג). גוון נייר רק אם הוא חלק מה-DNA */
   --sheet: #FFFFFF;      /* גיליון */
   --ink: #1A1A18;        /* דיו */
   --ink-soft: #6B6A66;
@@ -97,3 +97,21 @@ mark.insight { background: linear-gradient(transparent 45%, var(--marker) 45%, v
   .brand span { display: none; }
 }
 
+
+/* האפליקציה בגודל המסך (סעיף 2.9 א): סרגל + שטח עבודה, בלי גלילת דף */
+.app-shell { height: 100dvh; display: grid; grid-template-rows: auto minmax(0, 1fr); overflow: hidden; }
+.app-main { min-height: 0; display: grid; gap: clamp(8px, 1.2vw, 16px); padding: clamp(8px, 1.2vw, 16px); }
+.app-main > * { min-width: 0; min-height: 0; }
+.fill { flex: 1; min-height: 0; }            /* מפה, גרף או תלת־ממד ממלאים את מה שנשאר */
+.scroll-in { overflow: auto; min-height: 0; } /* גלילה בתוך הרכיב, לא בדף */
+/* מוקד וטור צד: מוקד רחב, פרטים בטור משלו */
+.focus-aside { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 28%); gap: 16px; }
+.dense-row { min-height: 32px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--rule-soft); }
+@media (max-width: 720px) {
+  .app-shell { height: auto; min-height: 100dvh; overflow: visible; }
+  .focus-aside { grid-template-columns: minmax(0, 1fr); }
+}
+/* כניסה: הצגת סיסמה */
+.pw { position: relative; display: flex; }
+.pw input { flex: 1; padding-inline-end: 64px; }
+.pw button { position: absolute; inset-inline-end: 4px; top: 50%; transform: translateY(-50%); }
