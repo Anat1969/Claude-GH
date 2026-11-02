@@ -307,3 +307,4 @@
 - מכסת Vercel (100 ביום) חוסמת גם פריסות תצוגה של PR. כשהיא נגמרת: קישור raw.githack לענף, ופריסה מתוזמנת אחרי 00:00 UTC.
 - אחרי מיזוג squash, ענף העבודה מתנגש עם main. בונים אותו מחדש על main עם אותו תוכן: `git checkout -B <branch> origin/main && git read-tree -u --reset <old-head> && git commit -C <old-head>`.
 - **תמונות מהסביבה:** Wikimedia חוסמת את סביבת הענן (429). Canva `generate-image` מחזיר דרך ה-API רק תמונה ממוזערת ברוחב 200 פיקסלים. מקור שעובד: Cleveland Museum of Art Open Access, עם API פתוח, רישיון CC0 ותמונות ברזולוציה טובה. נלמד ב-Amirot-GH.
+- **מכסת Vercel אינה חוסמת הכול באותה מידה** (02.11.2026, Amirot-GH): `create_deployment` דרך ה-API החזיר 402 במשך שעות. פריסה מ-Git (מיזוג ל-main) נכשלה, אבל אחרי כשעה שוב עבדה ועלתה ל-READY. לפני שמתזמנים פריסה לילית, ממזגים ובודקים את רשימת הפריסות.
