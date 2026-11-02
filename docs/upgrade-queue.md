@@ -113,7 +113,7 @@
 | 71 | PointOfView | Point of View | 2 | 4 | DNA, כפתורים עגולים | Vercel, פריסה אחת |
 | 72 | Psichologya | מרחב פנימי | 2 | 4 | DNA, כפתורים עגולים | Vercel, פריסה אחת |
 | 73 | Radar | רדאר | 2 | 4 | DNA, כפתורים עגולים | Vercel, פריסה אחת |
-| 74 | pro-metrics-vue-GH | Lovable App | 1 | 4 | תלת־ממד, התקנה, DNA, כפתורים עגולים | Lovable, דרך Lovable |
+| 74 | ~~pro-metrics-vue-GH~~ הושלמה 02.11 | שכונה 360° | 1 | 4 | תלת־ממד, התקנה, DNA, כפתורים עגולים | Lovable, דרך Lovable |
 | 75 | COLOR_GAME-GH | הרמוניה | 1 | 3 | התקנה, DNA, כפתורים עגולים | Pages, 0 |
 | 76 | Magazin-GH | המהות | 1 | 3 | התקנה, DNA, כפתורים עגולים | Vercel, פריסה אחת |
 | 77 | BEFORE-AFTER-GH | שידרוגים · לפני ואחרי | 1 | 2 | DNA, כפתורים עגולים | Pages, 0 |
@@ -129,6 +129,7 @@
 
 ## הושלמו
 
+- pro-metrics-vue-GH (שכונה 360°, עיריית אשדוד): 02.11.2026, השבחה מלאה לבקשת ענת. https://shchuna-360.vercel.app
 - TLUSHIM-GH: 28.10.2026, השבחה מלאה
 - ShehetHaCovaim: ששת הכובעים, שודרגה לפי ענת
 - SHIMUR-GH: יש תעודת DNA, 26.10.2026
