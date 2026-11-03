@@ -38,14 +38,15 @@ mark.insight { background: linear-gradient(transparent 45%, var(--marker) 45%, v
 
 /* כל מה שלוחצים עליו: מרובע, מוצל, מתרומם בריחוף ושוקע בלחיצה */
 .press {
-  font-family: inherit; cursor: pointer; border-radius: 0; border: 1px solid var(--rule);
+  /* כפתור סמוי: בלי מסגרת גלויה. הצורה נקראת מהצל, מההרמה ומהשקיעה (כלל ענת, 03.11.2026) */
+  font-family: inherit; cursor: pointer; border-radius: 0; border: 1px solid transparent;
   background: var(--sheet); color: var(--ink-soft); box-shadow: var(--shadow-1);
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
 }
 .press:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); color: var(--ink); }
 .press:active { transform: translateY(1px); box-shadow: none; }
 .press:focus-visible { outline: 2px solid var(--bank); outline-offset: 2px; }
-.press[aria-pressed="true"], .press.is-on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.press[aria-pressed="true"], .press.is-on { background: var(--ink); color: #fff; }
 .press:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn { padding: 10px 18px; font-size: 14px; font-weight: 500; }
 .chip { padding: 6px 14px; font-size: 13px; }

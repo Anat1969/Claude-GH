@@ -1,0 +1,40 @@
+name: context-map
+on:
+  push:
+    branches: [main]
+    paths:
+      - CLAUDE.md
+      - .claude/skills/anat-app-builder/SKILL.md
+      - .claude/skills/anat-design-language/SKILL.md
+      - context/CORE.md
+      - tools/context-map.mjs
+  pull_request:
+    paths:
+      - CLAUDE.md
+      - .claude/skills/**
+      - context/**
+      - tools/context-map.mjs
+permissions:
+  contents: write
+jobs:
+  map:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check on pull requests
+        if: github.event_name == 'pull_request'
+        run: node tools/context-map.mjs check
+      - name: Regenerate on main
+        if: github.event_name == 'push'
+        run: |
+          node tools/context-map.mjs instructions
+          if [ -n "$(git status --porcelain context)" ]; then
+            git config user.name "context-map"
+            git config user.email "actions@users.noreply.github.com"
+            git add context
+            git commit -m "מפת ההנחיות עודכנה אוטומטית"
+            git push
+          fi
