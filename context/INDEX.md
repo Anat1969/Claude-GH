@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**37401** טוקנים. הליבה לבדה: כ-**1467** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**37458** טוקנים. הליבה לבדה: כ-**1467** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -19,7 +19,7 @@
 | `cl-9` | הנחיות־העל: 9. מכסות ותזמון | 392 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9.md |
 | `cl-9a` | הנחיות־העל: 9א. השבחה בדרך | 77 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9a.md |
 | `cl-9b` | הנחיות־העל: 9ב. חוויית משתמש: דרישות של ענת שחוזרות בכל אפליקציה | 2493 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9b.md |
-| `cl-10` | הנחיות־העל: 10. למידה מתמשכת | 247 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10.md |
+| `cl-10` | הנחיות־העל: 10. למידה מתמשכת | 304 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10.md |
 | `cl-10a` | הנחיות־העל: 10א. זיכרון משותף בין שיחות | 276 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10a.md |
 | `cl-11` | הנחיות־העל: 11. חיסכון בטוקנים | 257 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-11.md |
 | `cl-log` | הנחיות־העל: יומן תיקונים | 3750 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
