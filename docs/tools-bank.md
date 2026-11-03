@@ -108,3 +108,18 @@ Free to draw. Photorealistic render with credits: **$3.99** for 4. Export to PNG
 | AI import from an image | Gemini from `aoa-edit`, with scale calibration by one known dimension (a 90 cm door) | Next: "Space from any image" |
 
 Next in the portfolio: plan for residents (urban renewal, clearance and rebuild), allowed volume (building-percentage and coverage exercise, Table 5), view from a wheelchair (MUNI 100), before and after.
+
+## קריינות בעברית (נבדק 03.11.2026, ענת בחרה: הילה)
+
+- **הכלי:** `templates/tts.py`, עם הקולות של קריאה בקול ב-Microsoft Edge. בחינם ובלי מפתח. הקולות: `he-IL-HilaNeural` (הילה, הבחירה של ענת) ו-`he-IL-AvriNeural` (אברי).
+- **הערכה, לא עובדה:** זה שימוש לא רשמי בשירות. הוא עובד היום, ואין התחייבות שימשיך לעבוד. החלופה הרשמית: Google Cloud Text-to-Speech, עם מפתח וחשבון חיוב.
+- **בתסריט:** `"voice": "he-IL-HilaNeural"`, ולכל סצנה `"say"`. גם `sayTitle` ו-`sayClose` לכרטיסים.
+  - כל סצנה נמשכת לפחות כמו המשפט שלה.
+  - המשפט מתחיל רק כשהמסך מוכן.
+  - שלב `pre` רץ לפני המשפט, כדי ששכבה איטית כבר תופיע כשהילה מזכירה אותה.
+- **עריכה אוטומטית:**
+  - קטע קפוא ארוך משנייה, מחוץ לקריינות, מתקצר ל-0.5 שנייה.
+  - בין משפט למשפט נשארות 0.6 שניות מכל צד, כמו קפיצת עריכה.
+  - הקול זז יחד עם החיתוך.
+- **הדוגמה:** רפואה, גרסה 2. **62** שניות ושבע סצנות. סריקה חזותית של 18 מסכים הובילה לבחירה של הלב, הריאות והמוח במראה רקמה, מחזור הדם ומפת הגילויים. כל עובדה שהילה אומרת נבדקה מול `js/data.js` והמקור שלה.
+- **מלכודת:** `edge-tts` קורא את תעודות ה-SSL מ-certifi ישירות. בענן מפנים אותו ל-`/root/.ccr/ca-bundle.crt`, ו-`tts.py` עושה זאת בעצמו.

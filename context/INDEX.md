@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**37708** טוקנים. הליבה לבדה: כ-**1467** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**37819** טוקנים. הליבה לבדה: כ-**1467** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -33,7 +33,7 @@
 | `ab-5` | בניית אפליקציות: 5. שפת עיצוב | 973 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-5.md |
 | `ab-6` | בניית אפליקציות: 6. מבנה נתונים דינמי | 342 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-6.md |
 | `ab-7` | בניית אפליקציות: 7. תשתית | 1108 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7.md |
-| `ab-8` | בניית אפליקציות: 8. בדיקה, גרסאות ומסירה | 1757 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-8.md |
+| `ab-8` | בניית אפליקציות: 8. בדיקה, גרסאות ומסירה | 1868 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-8.md |
 | `ab-9` | בניית אפליקציות: 9. מלכודות ידועות | 1834 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-9.md |
 | `ab-10` | בניית אפליקציות: 10. תזמון, משאבים ושעות השינה של ענת | 1148 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-10.md |
 | `ab-11` | בניית אפליקציות: 11. השבחה בדרך: כל מגע באפליקציה משדרג אותה | 1277 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-11.md |
