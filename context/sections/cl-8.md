@@ -3,5 +3,6 @@
 
 - Playwright מול `vite preview`, עם מוקים לשרת: כל כפתור, נייד, התקנה, הפחתת תנועה וצילומי מסך.
 - README: השורה הראשונה היא קישור מודגש לכתובת החיה. אותה כתובת בשדה Website של הריפו.
+- סרטון הדגמה לכל אפליקציה שנבנית או משודרגת: `templates/demo.cjs` (MP4, GIF ותמונת שער). ה-GIF ב-README מתחת לקישור. כלים חיצוניים נבחנים ב-`docs/tools-bank.md`.
 - קישור למיזוג האחרון בלי Vercel: `https://raw.githack.com/<owner>/<repo>/main/app/index.html`, דרך Action שבונה את `app/`.
 - CLAUDE.md בכל ריפו כולל "בעלות ולוגו", "יומן תיקונים" ו"למדנו בבנייה".
