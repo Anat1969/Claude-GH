@@ -11,6 +11,11 @@
 //   "scenes": [ { "insight": "עד 8 מילים", "detail": "עד 20 מילים", "goto": "?q=..." | "nav": "css של כפתור ניווט", "ready": "css", "hold": 1400, "steps": [
 //       { "type": "input.search", "text": "משכורת" } | { "hover": "css" } | { "click": "css" } | { "scroll": 600 } | { "wait": 800 } ] } ] }
 //
+// Film (script.style "film", for a video that moves rather than teaches): the caption is one large line, no counter and no
+// detail; "kicker" is a small line above the opening title; "closeBig" replaces the title on the closing card.
+// Music (script.music "wonder" | "calm" | "drive" | a file): composed by music.py, ducked under the narration, with a lift
+// and a bell shimmer when the closing card opens.
+//
 // פלט: <outPrefix>.mp4 (H.264, מוכן לרשת), <outPrefix>.gif (קל, ל-README), <outPrefix>-poster.jpg (תמונת שער).
 // הכיתוב נבנה בתוך הדף, ולכן העברית מימין לשמאל נכונה (ffmpeg drawtext לא יודע RTL).
 const { chromium } = require('playwright');
@@ -74,8 +79,10 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
     document.readyState === 'loading' ? addEventListener('DOMContentLoaded', mk) : mk();
   });
 
+  const FILM = !!(script && script.style === 'film');
   const caption = async (insight, detail = '', counter = '') => {
-    await p.evaluate(({ insight, detail, counter, NAVY, AMBER, FONT }) => {
+    if (FILM) { detail = ''; counter = ''; }
+    await p.evaluate(({ insight, detail, counter, NAVY, AMBER, FONT, FILM }) => {
       let el = document.getElementById('__demo_cap');
       if (!el) {
         el = document.createElement('div');
@@ -84,19 +91,20 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
         el.style.cssText = `position:fixed;inset-inline:0;bottom:0;z-index:2147483646;padding:14px 28px 16px;background:${NAVY};color:#fff;border-top:3px solid ${AMBER};font-family:${FONT};text-align:right;pointer-events:none;display:flex;gap:20px;align-items:center;box-shadow:0 -8px 24px rgba(0,0,0,.18)`;
         document.body.appendChild(el);
       }
+      if (FILM) el.style.cssText = `position:fixed;inset-inline:0;bottom:0;z-index:2147483646;padding:48px 64px 30px;background:linear-gradient(to top, ${NAVY} 0%, ${NAVY}e6 55%, ${NAVY}00 100%);color:#fff;font-family:${FONT};text-align:center;pointer-events:none;display:flex;justify-content:center;transition:opacity .4s`;
       el.innerHTML = '';
       if (counter) { const n = document.createElement('div'); n.textContent = counter; n.style.cssText = `font:700 15px "IBM Plex Mono",monospace;color:${AMBER};letter-spacing:.06em;flex:none`; el.appendChild(n); }
       const t = document.createElement('div');
-      const a = document.createElement('div'); a.textContent = insight; a.style.cssText = 'font-size:26px;font-weight:700;line-height:1.25';
+      const a = document.createElement('div'); a.textContent = insight; a.style.cssText = FILM ? `font-size:34px;font-weight:700;line-height:1.25;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.35)` : 'font-size:26px;font-weight:700;line-height:1.25';
       t.appendChild(a);
       if (detail) { const d = document.createElement('div'); d.textContent = detail; d.style.cssText = 'font-size:17px;opacity:.82;margin-top:3px'; t.appendChild(d); }
       el.appendChild(t);
-    }, { insight, detail, counter, NAVY, AMBER, FONT });
+    }, { insight, detail, counter, NAVY, AMBER, FONT, FILM });
   };
 
-  const card = async (big, small, foot = '', ms = 2200, keep = false, vkey = '') => {
+  const card = async (big, small, foot = '', ms = 2200, keep = false, vkey = '', kicker = '') => {
     if (vkey) { mark(vkey); if (voices[vkey]) ms = Math.max(ms, voices[vkey].dur * 1000 + 700); }
-    await p.evaluate(({ big, small, foot, NAVY, AMBER, FONT }) => {
+    await p.evaluate(({ big, small, foot, kicker, NAVY, AMBER, FONT }) => {
       const c = document.createElement('div');
       c.id = '__demo_card';
       c.dir = 'rtl';
@@ -105,12 +113,12 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
       const bar = document.createElement('div'); bar.style.cssText = `width:96px;height:6px;background:${AMBER}`;
       const h = document.createElement('div'); h.textContent = big; h.style.cssText = 'font-size:64px;font-weight:700;line-height:1.1';
       const s = document.createElement('div'); s.textContent = small; s.style.cssText = 'font-size:28px;opacity:.85;max-width:900px;line-height:1.35';
-      c.append(bar, h, s);
+      if (kicker) { const k = document.createElement('div'); k.textContent = kicker; k.style.cssText = `font-size:24px;color:${AMBER};font-weight:500`; c.append(bar, k, h, s); } else c.append(bar, h, s);
       if (foot) { const f = document.createElement('div'); f.textContent = foot; f.dir = 'ltr'; f.style.cssText = `font:500 22px "IBM Plex Mono",monospace;color:${AMBER};margin-top:24px;text-align:right`; c.appendChild(f); }
       document.body.appendChild(c);
       const k = document.getElementById('__demo_cursor'); if (k) k.style.visibility = 'hidden';
       requestAnimationFrame(() => { c.style.opacity = '1'; });
-    }, { big, small, foot, NAVY, AMBER, FONT });
+    }, { big, small, foot, kicker, NAVY, AMBER, FONT });
     await p.waitForTimeout(ms);
     if (keep) return; // the closing card stays: the video ends on it
     await p.evaluate(() => { const k = document.getElementById('__demo_cursor'); if (k) k.style.visibility = ''; const c = document.getElementById('__demo_card'); if (c) { c.style.opacity = '0'; setTimeout(() => c.remove(), 500); } });
@@ -139,7 +147,7 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
     await go(base);
     await p.mouse.move(W / 2, H / 2);
     startAt = (Date.now() - t0) / 1000; // הסרטון מתחיל בכרטיס הפתיחה, בלי מסך הטעינה שלפניו
-    await card(script.title, script.promise || '', '', 2600, false, 'title');
+    await card(script.title, script.promise || '', '', 2600, false, 'title', script.kicker || '');
     const runSteps = async (list) => {
       for (const st of list || []) {
         if (st.type) { const el = await moveTo(st.type); if (el) { await el.click(); await el.fill(''); await p.keyboard.type(st.text, { delay: 110 }); } }
@@ -166,7 +174,7 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
       await p.waitForTimeout(s.hold ?? (voices[`s${i}`] ? 300 : 1400));
     }
     await p.evaluate(() => document.getElementById('__demo_cap')?.remove());
-    await card(script.title, script.close || script.promise || '', [script.url, script.owner].filter(Boolean).join('   ·   '), 3000, true, 'close');
+    await card(script.closeBig || script.title, script.close || script.promise || '', [script.url, script.owner].filter(Boolean).join('   ·   '), 3000, true, 'close');
   } else {
     const text = third || '';
     const pages = rest.length ? ['', ...rest] : [''];
@@ -239,8 +247,18 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
   if (marks.length) {
     const ins = marks.flatMap((m) => ['-i', voices[m.key].file]);
     const delays = marks.map((m, j) => `[${j + 1}:a]adelay=${Math.max(0, Math.round(atOut(m) * 1000))}:all=1[a${j}]`).join(';');
-    const mix = `${delays};${marks.map((_, j) => `[a${j}]`).join('')}amix=inputs=${marks.length}:normalize=0:dropout_transition=0[a]`;
-    ff(['-ss', srcLead, '-i', src, ...ins, '-filter_complex', mix, '-map', '0:v', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '24', '-preset', 'slow', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', `${out}.mp4`]);
+    let mix = `${delays};${marks.map((_, j) => `[a${j}]`).join('')}amix=inputs=${marks.length}:normalize=0:dropout_transition=0`;
+    if (script.music) {
+      // the bed: as long as the film, lifted at the closing card, ducked under every sentence (sidechain)
+      const total = parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', src]).toString()) - parseFloat(srcLead);
+      const close = marks.find((m) => m.key === 'close');
+      let bed = script.music;
+      if (!fs.existsSync(bed)) { bed = path.join(dir, 'music.wav'); execFileSync('python3', ['-I', path.join(__dirname, 'music.py'), bed, total.toFixed(2), script.music, (close ? atOut(close) : total - 6).toFixed(2)]); }
+      ins.push('-i', bed);
+      const mi = marks.length + 1;
+      mix += `,aformat=sample_rates=44100:channel_layouts=stereo,asplit=2[v1][v2];[${mi}:a]atrim=0:${total.toFixed(2)},highpass=f=70,volume=${script.musicVolume ?? 0.42}[m];[m][v1]sidechaincompress=threshold=0.02:ratio=6:attack=30:release=600[md];[v2][md]amix=inputs=2:normalize=0:duration=longest,alimiter=limit=0.95[a]`;
+    } else mix += '[a]';
+    ff(['-ss', srcLead, '-i', src, ...ins, '-filter_complex', mix, '-map', '0:v', '-map', '[a]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '24', '-preset', 'slow', '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', `${out}.mp4`]);
     fs.writeFileSync(`${out}-voice.json`, JSON.stringify(marks.map((m) => ({ key: m.key, at: +atOut(m).toFixed(2), dur: +voices[m.key].dur.toFixed(2) })), null, 1));
   } else ff(['-ss', lead, '-i', webm, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '24', '-preset', 'slow', '-movflags', '+faststart', `${out}.mp4`]);
   ff(['-ss', srcLead, '-t', script ? '120' : '10', '-i', src, '-vf', (script ? 'setpts=0.5*PTS,fps=5,scale=560:-1:flags=lanczos,' : 'fps=6,scale=600:-1:flags=lanczos,') + 'split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle', `${out}.gif`]); // בתסריט: כל הסיפור במהירות כפולה
