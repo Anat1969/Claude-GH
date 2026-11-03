@@ -208,6 +208,13 @@ description: הסקיל המאוחד של ענת לבניית אפליקציות
   - ניתוב hash, נכסים בנתיב יחסי, ו-service worker נרשם רק כשהבסיס הוא `/`.
   - הכתובת: `https://raw.githack.com/<owner>/<repo>/main/app/index.html`. ב-raw.githack מופיע לפעמים דף ביניים "One more step": לוחצים "Open the page" פעם אחת. בבדיקת Playwright לוחצים עליו לפני הבדיקה, ובהודעת המסירה מציינים זאת לענת. היא מופיעה ב-README מתחת לקישור הראשי, ב-CLAUDE.md, ובכל הודעת מסירה לצד כתובת Vercel.
   - אתר סטטי בלי בנייה: אותה כתובת ישירות לקובץ ה-HTML ב-main.
+  - **כשאין מכסת פריסה** (כלל ענת, 03.11.2026): הקישור נוצר ונמסר באותה עבודה, לא אחרי הפריסה. אם לאפליקציה עוד אין `app/`, מוסיפים אותו עכשיו, כחלק מהמשימה. הפריסה ל-Vercel מתוזמנת לרגע שמתפנה מקום (`send_later`), ונבדקת שם.
+  - **אפליקציית שרת** (Next.js, API routes, כניסה), שאין לה גרסה סטטית:
+    - `preview/entry.tsx` מרנדר את הרכיב ששונה, עם נתונים מוטמעים (`preview/*.json` מ-Supabase). בלי כניסה ובלי שמירה, ושורה בדף אומרת שזו תצוגה.
+    - `scripts/build-preview.mjs`: `npx --yes esbuild@0.24.0 preview/entry.tsx --bundle --format=esm --jsx=automatic`, עם `--alias:next/navigation=./preview/router-stub.ts`. הנתיבים `@/` נפתרים מ-tsconfig.
+    - CSS: מעתיקים את `.next/static/css/*.css` אחרי `npm run build`, כי Tailwind מקומפל שם. מחלקה שלא קיימת באפליקציה לא תהיה ב-CSS הזה, ולכן בדף התצוגה משתמשים בסגנון מוטמע.
+    - `preview/app.js` נכנס ל-ignores של eslint. הכתובת: `https://raw.githack.com/<owner>/<repo>/main/preview/index.html`.
+    - דוגמה: NiceStreets-GH, `preview/` (חתך הרחוב).
 - **תיעוד:** README (הרצה, מבנה, החלטות), CLAUDE.md עם יומן תיקונים וסעיף "למדנו בבנייה", ומיגרציות בריפו.
 
 ## 9. מלכודות ידועות
