@@ -46,8 +46,11 @@
 הפירוט ב-`docs/token-economy.md`. העיקר:
 
 - קוראים מפה לפני קבצים: `CODEMAP.md` בריפו, `context/INDEX.md` בהנחיות.
-- בשיחת קוד באפליקציה עם יותר מכ-20 קבצי קוד: בונים את המפה בתחילת השיחה, ולא מכניסים אותה לקומיט (בלי פריסה, בלי מפה שמתיישנת):
-  `curl -sS -o /tmp/cm.mjs https://raw.githubusercontent.com/Anat1969/Claude-GH/main/tools/context-map.mjs && node /tmp/cm.mjs code .`
+- **המפה נבנית לבד.** ענת לא מבקשת אותה ולא זוכרת אותה. בשיחת קוד באפליקציה:
+  - יש hook (הודעה "CODEMAP.md is ready" בתחילת השיחה): קוראים את `CODEMAP.md` לפני פתיחת קבצים.
+  - אין hook: מריצים את המתקין, והשינוי נכנס לקומיט של המשימה עצמה. בלי קומיט נפרד ובלי פריסה נוספת. המתקין קובע את הרמה לבד (0, 1 או 2), ומותר גם באפליקציה ששודרגה ידנית, כי הוא לא משנה דבר במסך.
+  `curl -fsS -o /tmp/inst.mjs https://raw.githubusercontent.com/Anat1969/Claude-GH/main/tools/install-codemap-hook.mjs && node /tmp/inst.mjs .`
+  - בשיחה הזו עצמה בונים את המפה מיד: `curl -fsS -o /tmp/cm.mjs https://raw.githubusercontent.com/Anat1969/Claude-GH/main/tools/context-map.mjs && node /tmp/cm.mjs code .`
 - `grep` לפני קריאה, וקריאה בטווח שורות. לא קוראים שוב קובץ שנערך.
 - חיפוש רחב עובר לסוכן משנה, וחוזרת רק המסקנה.
 - משימה חדשה פותחת שיחה חדשה. שיחה ארוכה נדחסת ב-`/compact` לפני שהיא מתמלאת.
