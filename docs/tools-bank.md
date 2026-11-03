@@ -49,6 +49,8 @@ node .claude/skills/anat-design-language/templates/demo.cjs http://localhost:417
 
 ### איך מזקקים רייל לכלי
 
+התהליך המלא הוא סקיל: `.claude/skills/reel-to-tools/SKILL.md`.
+
 1. **חילוץ:** Apify `apivault_labs/facebook-reels-video-scraper` מחזיר כותרת, תמליל וקישור MP4 (כ-**$0.004** לרייל). WebFetch לא קורא פייסבוק.
 2. **צפייה:** `ffmpeg -vf "fps=1,scale=360:-1"` ואחריו `tile=6x4` יוצרים דף פריימים אחד. ממנו מזהים מה מוצג, גם כשאין תמליל.
 3. **זיקוק:** לכל רעיון: עיקרון, בעיה שהוא פותר, ומדד אמינות (סעיף 7).
@@ -71,6 +73,7 @@ node .claude/skills/anat-design-language/templates/demo.cjs http://localhost:417
 - **מתאים לכלל של ענת:** עבודה זורמת מכל מכשיר, בלי קישור או מפתח (AppOfApp, 29.10.2026).
 - **מדד אמינות:** חיווי "התקבל" במכשיר השני, וזמן ההעברה.
 - **בתיק:** שילוט באתרי בנייה, רחובות טובים באשדוד, מה נבנה סביבי, לפני ואחרי, ותמונת שער ב-AppOfApp ישר מהטלפון.
+- **מומש:** בתיק האפליקציות, 03.11.2026 (AppOfApp-GH#34). בעריכה, כפתור "מהטלפון" בתמונת השער פותח QR. הטלפון מצלם, מקטין את התמונה (כלי 1) ושומר, והמחשב קולט אותה תוך **3 שניות**. בלי Realtime, ולכן זה עובד גם ב-Pages. הקוד לשימוש חוזר: `src/lib/phone.ts`, `PhoneShoot.tsx`, `PhoneLink.tsx`.
 
 ### 3. סימולטור עם משאב וירטואלי (מתוך Stockade, stockademarketsim.com)
 
