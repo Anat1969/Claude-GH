@@ -91,3 +91,20 @@ node .claude/skills/anat-design-language/templates/demo.cjs http://localhost:417
 | סיור שטח: צילום בטלפון, מיקום ותיוג, ישר לתיק תיעוד במחשב | 2 + 1 | שילוט, שימור ורחובות טובים חולקים את אותו צורך |
 | סימולטור פינוי בינוי: מקדם, דירות תמורה ועלות, לפני ואחרי | 3 | החלטה שמרגישים, במקום טבלת אקסל |
 | ממיר תוכניות מקומי: PDF של היתר לתמונות ולטבלת שטחים, בלי העלאה | 1 | מסמכי תושבים לא עוזבים את המחשב |
+
+## SpacePlanner (spaceplanner.co)
+
+Checked 03.11.2026, from a Facebook reel (Coma TV, **2.8 million** views, 14 seconds, no transcript; frames extracted with ffmpeg).
+Floor plan in the browser with real dimensions. Instant switch to 3D, then a first-person walkthrough. AI import from a photo, sketch or PDF.
+Free to draw. Photorealistic render with credits: **$3.99** for 4. Export to PNG, PDF, SVG, JSON and DXF. **No API and no embedding.**
+
+**The principle: line, volume, first person.** You understand a space only when you stand inside it.
+
+| What it does | At Claude's end | Where it is already used |
+|---|---|---|
+| Plan to 3D to walkthrough | `walk.js` (`<space-walk>`) from appofapp-gh, standard `docs/walk-standard.md` in AppOfApp-GH | Urban 95, `/walk` |
+| Choosing an eye height | 95 child, 120 seated adult, 160 standing, with a live count of what blocks the view | Urban 95 |
+| Common layout against the guidelines | `variants` in the plan, problem in red and solution in green | Urban 95 |
+| AI import from an image | Gemini from `aoa-edit`, with scale calibration by one known dimension (a 90 cm door) | Next: "Space from any image" |
+
+Next in the portfolio: plan for residents (urban renewal, clearance and rebuild), allowed volume (building-percentage and coverage exercise, Table 5), view from a wheelchair (MUNI 100), before and after.
