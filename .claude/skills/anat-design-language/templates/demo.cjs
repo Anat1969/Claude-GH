@@ -20,21 +20,25 @@ const os = require('os');
 const path = require('path');
 
 const W = 1280, H = 800;
-const NAVY = '#0b1f3a', AMBER = '#f2b705';
-const FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
+// Cards and captions take the app's own palette from script.colors (DNA): ink is the ground, accent the line.
+let NAVY = '#0b1f3a', AMBER = '#f2b705';
+let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
 
 (async () => {
   const [base, out, third, ...rest] = process.argv.slice(2);
   if (!base || !out) { console.error('usage: node demo.cjs <url> <outPrefix> ["caption" | script.json] [hash...]'); process.exit(2); }
   const script = third && third.endsWith('.json') ? JSON.parse(fs.readFileSync(third, 'utf8')) : null;
+  if (script && script.colors) { NAVY = script.colors.ink || NAVY; AMBER = script.colors.accent || AMBER; }
+  if (script && script.font) FONT = script.font;
 
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'demo-'));
-  const b = await chromium.launch();
+  // Software WebGL, so apps with Three.js (refua) show their 3D in the recording.
+  const b = await chromium.launch({ args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const ctx = await b.newContext({ viewport: { width: W, height: H }, recordVideo: { dir, size: { width: W, height: H } }, locale: 'he-IL' });
   const p = await ctx.newPage();
   const t0 = Date.now();
   let startAt = 0;
-  await p.route('**/fonts.googleapis.com/**', r => r.abort());
+  // The app's own fonts load (Google Fonts is reachable); blocking them rendered every video in a fallback font.
 
   // סמן גלוי: headless לא מקליט את סמן העכבר.
   await p.addInitScript(() => {
@@ -71,7 +75,7 @@ const FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
     }, { insight, detail, counter, NAVY, AMBER, FONT });
   };
 
-  const card = async (big, small, foot = '', ms = 2200) => {
+  const card = async (big, small, foot = '', ms = 2200, keep = false) => {
     await p.evaluate(({ big, small, foot, NAVY, AMBER, FONT }) => {
       const c = document.createElement('div');
       c.id = '__demo_card';
@@ -88,6 +92,7 @@ const FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
       requestAnimationFrame(() => { c.style.opacity = '1'; });
     }, { big, small, foot, NAVY, AMBER, FONT });
     await p.waitForTimeout(ms);
+    if (keep) return; // the closing card stays: the video ends on it
     await p.evaluate(() => { const k = document.getElementById('__demo_cursor'); if (k) k.style.visibility = ''; const c = document.getElementById('__demo_card'); if (c) { c.style.opacity = '0'; setTimeout(() => c.remove(), 500); } });
     await p.waitForTimeout(500);
   };
@@ -95,8 +100,8 @@ const FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
   const moveTo = async (sel) => {
     const el = p.locator(sel).first();
     await el.scrollIntoViewIfNeeded().catch(() => {});
-    const box = await el.boundingBox();
-    if (!box) return null;
+    const box = await el.boundingBox({ timeout: 8000 }).catch(() => null);
+    if (!box) { console.warn('demo: not found, skipped:', sel); return null; }
     await p.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 18 });
     return el;
   };
@@ -133,7 +138,7 @@ const FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
       await p.waitForTimeout(s.hold ?? 1400);
     }
     await p.evaluate(() => document.getElementById('__demo_cap')?.remove());
-    await card(script.title, script.close || script.promise || '', [script.url, script.owner].filter(Boolean).join('   ·   '), 3000);
+    await card(script.title, script.close || script.promise || '', [script.url, script.owner].filter(Boolean).join('   ·   '), 3000, true);
   } else {
     const text = third || '';
     const pages = rest.length ? ['', ...rest] : [''];
