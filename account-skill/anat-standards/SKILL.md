@@ -7,21 +7,22 @@ description: טוען את ההנחיות הכלליות של ענת מהבית 
 
 הסקיל הזה לא מחזיק תוכן. הוא מצביע על המקור היחיד, כדי שכל תיקון ייכנס פעם אחת ויגיע לכל שיחה.
 
-## בתחילת כל משימה
-1. קרא את שני הקבצים העדכניים:
-   - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/CLAUDE.md
-   - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/.claude/skills/anat-app-builder/SKILL.md
-   - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/.claude/skills/anat-design-language/SKILL.md (שפת העיצוב ורכיבים מוכנים)
-2. בקוד: אם הריפו כולל `.claude/skills/anat-app-builder/SKILL.md` ישן, הגרסה מ-Claude-GH גוברת.
-3. בכתיבת טקסט שמודל AI מייצר באפליקציה: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/docs/ai-text-standard.md
-4. בכל שיחה, גם בלי אפליקציה, קרא את הכללים הקבועים שמשותפים לכל השיחות:
+## בתחילת כל משימה: ליבה, מפה, ורק מה שצריך
+הטעינה המלאה של CLAUDE.md ושני הסקילים עולה עשרות אלפי טוקנים בכל שיחה. לכן טוענים בשכבות (השיטה: `docs/token-economy.md`).
+1. תמיד: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/CORE.md (הכללים שתמיד בתוקף, ומפת ניתוב של משימה מול סעיפים).
+2. לפי מפת הניתוב בליבה, רק הסעיפים שהמשימה צריכה: `https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/<מזהה>.md`. רשימת כל הסעיפים והגודל שלהם: `context/INDEX.md`.
+3. שאלה, ניסוח, מייל או פרומפט: הליבה והכללים הקבועים (סעיף 4) מספיקים.
+4. בקוד: אם בריפו יש `CODEMAP.md`, קוראים אותו לפני פתיחת קבצים. אם אין, ויש יותר מכ-20 קבצי קוד, בונים אותו: `node <Claude-GH>/tools/context-map.mjs code .`
+5. הקבצים המלאים (`CLAUDE.md` ושני הסקילים) נקראים במלואם רק כשעורכים אותם, או כשמפת הניתוב לא מכסה את המשימה. אם הריפו כולל `.claude/skills/anat-app-builder/SKILL.md` ישן, הגרסה מ-Claude-GH גוברת.
+6. בכתיבת טקסט שמודל AI מייצר באפליקציה: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/docs/ai-text-standard.md
+7. בכל שיחה, גם בלי אפליקציה, קרא את הכללים הקבועים שמשותפים לכל השיחות:
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/README.md (הפרוטוקול)
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/language.md
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/narrative.md
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/schemas.md
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/ux.md
    - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/rules/design.md
-5. אם יש גישה ל-Google Drive: קרא גם את הקבצים בתיקייה `Claude-GH תור כללים` (parentId `1s2vB4nm5-6jPY00MtFDvItF6gOzSwhQY`, https://drive.google.com/drive/folders/1s2vB4nm5-6jPY00MtFDvItF6gOzSwhQY) (חוץ מתת־התיקייה `נקלט`). אלה כללים שנכנסו משיחות אחרות ועוד לא עברו לריפו. הם תקפים כבר עכשיו.
+8. אם יש גישה ל-Google Drive: קרא גם את הקבצים בתיקייה `Claude-GH תור כללים` (parentId `1s2vB4nm5-6jPY00MtFDvItF6gOzSwhQY`, https://drive.google.com/drive/folders/1s2vB4nm5-6jPY00MtFDvItF6gOzSwhQY) (חוץ מתת־התיקייה `נקלט`). אלה כללים שנכנסו משיחות אחרות ועוד לא עברו לריפו. הם תקפים כבר עכשיו.
 
 ## אם הקריאה נכשלה
 עבוד לפי התמצית הזו, ואמור לענת במשפט אחד שהקריאה נכשלה:
