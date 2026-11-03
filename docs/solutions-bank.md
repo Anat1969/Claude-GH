@@ -26,3 +26,8 @@
 | גלילה אופקית בנייד בגלל טבלה רחבה | פריט flex בתוך `#root` מתרחב לרוחב התוכן | `main { min-width: 0; width: 100% }`, והטבלה בתוך עטיפה עם `overflow-x: auto` | Curs2Meets-GH, 03.11.2026 |
 | רווח בין מילה למספר נעלם בבורר | `bdi` עם `direction: ltr` הופך את `margin-inline-start` לשמאל | `margin-right` על המספר בתוך שורה עברית | Curs2Meets-GH, 03.11.2026 |
 | `addInitScript` לא רץ בבדיקה | מעבר hash באותו דף לא טוען אותו מחדש | אחרי `goto` עושים `reload` | Curs2Meets-GH, 03.11.2026 |
+| Vercel מחזיר "Deployment rate limited — retry in 24 hours", ושום מיזוג לא עולה | מכסת 100 הפריסות היומית של החשבון נוצלה. דחיפה ל-`gh-pages` הפעילה גם היא בנייה ב-Vercel, שנכשלה ונספרה | `vercel.json` עם `deploymentEnabled: false` בתוך תוצר ה-Pages. כתובת שנייה ב-GitHub Pages לכל אפליקציה. פריסה חוזרת של הקומיט האחרון בחלון הלילי | AppOfApp-GH, -95, 03.11.2026 |
+| קובץ משותף (`walk.js`, `demo.js`) חוזר כדף הבית | כלל ה-rewrite ב-`vercel.json` מפנה כל נתיב שלא ברשימת החריגים ל-`index.html` | כל קובץ משותף חדש נכנס לרשימת החריגים. בודקים עם `curl` שחוזר JavaScript | AppOfApp-GH, 03.11.2026 |
+| raw.githack מציג "One more step" עם פרסומת לפני האפליקציה | דפי HTML ב-githack עוברים דרך דף ביניים | לא משתמשים ב-githack לקישור לענת. עדיף GitHub Pages מענף, עם `BASE_PATH` | -95, 03.11.2026 |
+| בדיקת Playwright נכשלת בלי סיבה אחרי בנייה חדשה | `next-server` ישן מגיש את הבנייה הקודמת | עוצרים את `next-server` לפני `next start` | -95, 03.11.2026 |
+| משתני צבע של רכיב בצל ה-DOM יוצאים ריקים | מעגל: `--ink: var(--sw-ink)` ברכיב, ו-`--sw-ink: var(--ink)` בדף | שמות פנימיים ייחודיים (`--k-ink`) | walk.js, 03.11.2026 |
