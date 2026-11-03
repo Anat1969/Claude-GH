@@ -5,7 +5,7 @@
 - שם האפליקציה ואייקון האפליקציה מקשרים לדף הבית.
 - בסרגל: רק ניווט תוכן וכפתור לוגו אחד. כל כפתורי העריכה והמערכת (העתקת קישור, מדריך חי, סרטון הדגמה, שיחת הפיתוח, פרויקט המחקר, התקנת האפליקציה, מצב עריכה, הוספה, מחיקה, כניסה ויציאה) נמצאים רק בתוך הלוגו, אף פעם לא ככפתורים נפרדים.
 - מימוש: `<script src="https://appofapp-gh.vercel.app/ai-menu.js"></script>` ו-`<ai-menu>`. תקן: https://github.com/Anat1969/AppOfApp-GH/blob/main/docs/ai-menu-standard.md
-- **תוכנית שהולכים בה:** כשיש מרחב, תוכנית או מידות, מוסיפים `<space-walk>` מ-`https://appofapp-gh.vercel.app/walk.js`: תלת־ממד, הליכה בגובה עיניים (95, 120 או 160) וספירה של מה שחוסם. תקן: https://github.com/Anat1969/AppOfApp-GH/blob/main/docs/walk-standard.md
+- **תוכנית שהולכים בה:** כשיש מרחב, תוכנית או מידות, מוסיפים `<space-walk>` מ-`https://anat1969.github.io/AppOfApp-GH/walk.js` (קודם Pages, ו-Vercel כגיבוי): תלת־ממד, הליכה בגובה עיניים (95, 120 או 160) וספירה של מה שחוסם. תקן: https://github.com/Anat1969/AppOfApp-GH/blob/main/docs/walk-standard.md
 - בדפים לקהל חיצוני: הלוגו בלי תפריט.
 - התקנה מ-Chrome: manifest, service worker ואייקון בלי טקסט.
 - דף בית אמיתי: מסביר ויזואלית, מונפש ובתלת־ממד, ובאופן ענייני: חזון, מטרה, כלים ותוצאות.
