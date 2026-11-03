@@ -7,13 +7,15 @@ description: טוען את ההנחיות הכלליות של ענת מהבית 
 
 הסקיל הזה לא מחזיק תוכן. הוא מצביע על המקור היחיד, כדי שכל תיקון ייכנס פעם אחת ויגיע לכל שיחה.
 
-## בתחילת כל משימה
-1. קרא את שני הקבצים העדכניים:
-   - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/CLAUDE.md
-   - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/.claude/skills/anat-app-builder/SKILL.md
-   - https://raw.githubusercontent.com/Anat1969/Claude-GH/main/.claude/skills/anat-design-language/SKILL.md (שפת העיצוב ורכיבים מוכנים)
-2. בקוד: אם הריפו כולל `.claude/skills/anat-app-builder/SKILL.md` ישן, הגרסה מ-Claude-GH גוברת.
-3. בכתיבת טקסט שמודל AI מייצר באפליקציה: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/docs/ai-text-standard.md
+## בתחילת כל משימה: ליבה, מפה, ורק מה שצריך
+הטעינה המלאה של ההנחיות עולה כ-24 אלף טוקנים בכל שיחה. לכן טוענים בשכבות (שיטה: `docs/token-economy.md`).
+1. תמיד: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/CORE.md (הכללים שתמיד בתוקף, ומפת ניתוב של משימה מול סעיפים).
+2. לפי מפת הניתוב בליבה, רק הסעיפים שהמשימה צריכה: `https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/<מזהה>.md`. רשימת כל הסעיפים: `context/INDEX.md`.
+3. שאלה, ניסוח, מייל או פרומפט: הליבה מספיקה.
+4. בקוד: אם בריפו יש `CODEMAP.md`, קוראים אותו לפני פתיחת קבצים. אם אין ויש יותר מכ-20 קבצי קוד, בונים אותו: `node <Claude-GH>/tools/context-map.mjs code .`
+5. בקוד: אם הריפו כולל `.claude/skills/anat-app-builder/SKILL.md` ישן, הגרסה מ-Claude-GH גוברת.
+6. בכתיבת טקסט שמודל AI מייצר באפליקציה: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/docs/ai-text-standard.md
+7. הקבצים המלאים (`CLAUDE.md` ושני הסקילים) נקראים במלואם רק כשעורכים אותם, או כשמפת הניתוב לא מכסה את המשימה.
 
 ## אם הקריאה נכשלה
 עבוד לפי התמצית הזו, ואמור לענת במשפט אחד שהקריאה נכשלה:
