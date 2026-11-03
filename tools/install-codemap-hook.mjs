@@ -19,7 +19,7 @@ import { execSync } from 'node:child_process';
 const RAW = 'https://raw.githubusercontent.com/Anat1969/Claude-GH/main/tools/context-map.mjs';
 const MARK = 'Anat1969/Claude-GH/main/tools/context-map.mjs';
 export const HOOK_COMMAND =
-  `f="\${TMPDIR:-/tmp}/anat-context-map.mjs"; curl -fsS -o "$f" ${RAW} && node "$f" code "\${CLAUDE_PROJECT_DIR:-.}" >/dev/null 2>&1 && echo "CODEMAP.md is ready in the repo root. Read it before opening source files."; exit 0`;
+  `f="\${TMPDIR:-/tmp}/anat-context-map.mjs"; curl -fsS -o "$f" ${RAW} && node "$f" code "\${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null && echo "CODEMAP.md is ready in the repo root. Read it before opening source files. Report these numbers in the token-saving line at the end of the session."; exit 0`;
 
 const CODE_EXT = /\.(tsx?|jsx?|mjs|cjs|vue|svelte|py|sql|css|html)$/;
 const SKIP = /(^|\/)(node_modules|dist|build|\.next|coverage|vendor|gh-pages)\//;
