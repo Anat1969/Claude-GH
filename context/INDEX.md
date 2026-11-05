@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**41810** טוקנים. הליבה לבדה: כ-**1657** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**42387** טוקנים. הליבה לבדה: כ-**1657** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -22,8 +22,8 @@
 | `cl-10` | הנחיות־העל: 10. למידה מתמשכת | 316 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10.md |
 | `cl-10a` | הנחיות־העל: 10א. זיכרון משותף בין שיחות | 276 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10a.md |
 | `cl-11` | הנחיות־העל: 11. חיסכון בטוקנים | 257 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-11.md |
-| `cl-log` | הנחיות־העל: יומן תיקונים | 4808 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
-| `cl-learned` | הנחיות־העל: למדנו בבנייה | 775 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-learned.md |
+| `cl-log` | הנחיות־העל: יומן תיקונים | 4898 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
+| `cl-learned` | הנחיות־העל: למדנו בבנייה | 842 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-learned.md |
 | `ab-intro` | בניית אפליקציות: פתיחה | 463 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-intro.md |
 | `ab-0` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה | 2076 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-0.md |
 | `ab-1` | בניית אפליקציות: 1. דיאלוג שמשתפר משיחה לשיחה | 767 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-1.md |
@@ -53,8 +53,8 @@
 | `dl-2.11` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.11 הקלטה ותמלול בכל שדה כתיבה | 421 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.11.md |
 | `dl-2.12` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.12 שפת סימנים: סוג מידע, אייקון וכפתור חבוי | 942 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.12.md |
 | `dl-3` | שפת העיצוב: 3. שכבה ייחודית: תעודת DNA | 246 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-3.md |
-| `dl-4` | שפת העיצוב: 4. דף בית אמיתי | 294 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-4.md |
+| `dl-4` | שפת העיצוב: 4. דף בית אמיתי | 654 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-4.md |
 | `dl-5` | שפת העיצוב: 5. דפוסי חוויה שעבדו | 310 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-5.md |
 | `dl-6` | שפת העיצוב: 6. בדיקה בעין | 179 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-6.md |
 | `dl-7` | שפת העיצוב: 7. שכבת ידע מוזיאלית: חיבורים, הקשרים וריכוזי ידע | 1164 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-7.md |
-| `dl-8` | שפת העיצוב: 8. רכיבים מוכנים | 464 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-8.md |
+| `dl-8` | שפת העיצוב: 8. רכיבים מוכנים | 524 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-8.md |
