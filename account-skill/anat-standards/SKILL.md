@@ -13,7 +13,7 @@ description: טוען את ההנחיות הכלליות של ענת מהבית 
 2. לפי מפת הניתוב בליבה, רק הסעיפים שהמשימה צריכה: `https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/<מזהה>.md`. רשימת כל הסעיפים והגודל שלהם: `context/INDEX.md`.
 3. כל משימה שיש בה מסך, דף, גרף, מצגת או כתבה: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/.claude/skills/anat-design-language/DOCTRINE.md (תורת התקשורת החזותית: עשרה עקרונות, תדריך עיצוב לפני קוד ושער מנהל אמנותי לפני מסירה). נקרא לפני סעיפי העיצוב.
 4. שאלה, ניסוח, מייל או פרומפט: הליבה והכללים הקבועים (שלב 8) מספיקים.
-5. בקוד: אם בריפו יש `CODEMAP.md`, קוראים אותו לפני פתיחת קבצים. אם אין, ויש יותר מכ-20 קבצי קוד, בונים אותו: `node <Claude-GH>/tools/context-map.mjs code .`
+5. בקוד: אם בריפו יש `CODEMAP.md`, קוראים אותו לפני פתיחת קבצים. אם אין, ויש יותר מכ-20 קבצי קוד או יותר מ-1,500 שורות, בונים אותו: `node <Claude-GH>/tools/context-map.mjs code .`
 6. הקבצים המלאים (`CLAUDE.md` ושני הסקילים) נקראים במלואם רק כשעורכים אותם, או כשמפת הניתוב לא מכסה את המשימה. אם הריפו כולל `.claude/skills/anat-app-builder/SKILL.md` ישן, הגרסה מ-Claude-GH גוברת.
 7. בכתיבת טקסט שמודל AI מייצר באפליקציה: https://raw.githubusercontent.com/Anat1969/Claude-GH/main/docs/ai-text-standard.md
 8. בכל שיחה, גם בלי אפליקציה, קרא את הכללים הקבועים שמשותפים לכל השיחות:

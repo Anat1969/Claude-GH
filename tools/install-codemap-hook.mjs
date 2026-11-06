@@ -6,8 +6,9 @@
 //   node tools/install-codemap-hook.mjs <repoDir> --dry   prints the level only
 //
 // Levels:
-//   0  fewer than 20 code files: nothing to install, reading the files is cheap.
-//   1  20 code files or more: SessionStart hook builds CODEMAP.md in every session;
+//   0  fewer than 20 code files AND fewer than 1,500 lines: nothing to install, reading the files is cheap.
+//   1  20 code files or more, OR 1,500 lines or more (a few large HTML files cost as much as many small ones,
+//      learned in targil2, 06.11.2026): SessionStart hook builds CODEMAP.md in every session;
 //      CODEMAP.md goes to .gitignore, so it never causes a commit or a deploy.
 //   2  more than 20,000 lines: level 1, plus a note that Graphify may pay off
 //      (run on Anat's computer; see docs/token-economy.md, section 5).
@@ -41,7 +42,7 @@ function measure(dir) {
 }
 
 function levelOf({ files, lines }) {
-  if (files < 20) return 0;
+  if (files < 20 && lines < 1_500) return 0;
   return lines > 20_000 ? 2 : 1;
 }
 
