@@ -160,12 +160,36 @@ function symbols(rel, text) {
     add(/^(?:async\s+)?function\s+([A-Za-z_$][\w$]*)/gm);
     add(/customElements\.define\(\s*['"]([\w-]+)['"]/g);
     if (/^export\s+default\s+[A-Za-z_$]/m.test(text) && !s.size) s.add('default');
+  } else if (/\.(html|vue|svelte)$/.test(rel)) {
+    // code inside <script>: functions are usually indented, so the line start is not required
+    add(/^\s*(?:async\s+)?function\s+([A-Za-z_$][\w$]*)/gm);
+    add(/customElements\.define\(\s*['"]([\w-]+)['"]/g);
   } else if (rel.endsWith('.py')) {
     add(/^(?:def|class)\s+([A-Za-z_]\w*)/gm);
   } else if (rel.endsWith('.sql')) {
     add(/create\s+(?:or\s+replace\s+)?(?:table|view|function|policy)\s+(?:if\s+not\s+exists\s+)?([\w."]+)/gi);
   }
   return [...s];
+}
+
+// Large files get anchors: every function, constant and section comment with its line number,
+// so a session opens a line range instead of the whole file (06.11.2026, learned in targil2:
+// four HTML files of 100 to 1,500 lines were invisible to the map).
+const ANCHOR_MIN_LINES = 300;
+const ANCHORS = [
+  [/^\s*(?:export\s+)?(?:default\s+)?(?:async\s+)?function\*?\s+([\w$]+)\s*\(/, (m) => m[1] + '()'],
+  [/^\s*(?:export\s+)?class\s+([\w$]+)/, (m) => 'class ' + m[1]],
+  [/^\s*(?:export\s+)?const\s+([\w$]+)\s*=\s*(?:async\s*)?(?:\([^)]*\)|[\w$]+)\s*=>/, (m) => m[1] + '()'],
+  [/^\s*(?:export\s+)?(?:const|let)\s+([A-Z][A-Z0-9_]{2,})\s*=/, (m) => m[1]],
+  [/^\s*\/\/\s*[-=]{3,}\s*(.+?)\s*[-=]{3,}\s*$/, (m) => '§ ' + m[1]],
+  [/^\s*\/\*\s*[-=]{3,}\s*(.+?)\s*[-=]{3,}\s*\*\/\s*$/, (m) => '§ ' + m[1]],
+  [/^\s*<(main|header|section|aside|nav|template)\b[^>]*\b(?:id|class)="([^"\s]+)/, (m) => '<' + m[1] + ' ' + m[2] + '>'],
+  [/^\s*(?:def|class)\s+([A-Za-z_]\w*)/, (m) => m[1]],
+];
+function anchors(text) {
+  const out = [];
+  text.split('\n').forEach((l, i) => { for (const [re, name] of ANCHORS) { const m = l.match(re); if (m) { out.push(`${i + 1} ${name(m)}`); break; } } });
+  return out;
 }
 
 function localImports(rel, text) {
@@ -183,12 +207,16 @@ function buildCodeMap(dir) {
   const usedBy = {};
   const tables = new Set();
   let lines = 0;
+  let readTokens = 0;
+  const anchored = [];
   for (const rel of files) {
     const full = path.join(dir, rel);
     if (!fs.existsSync(full) || fs.statSync(full).size > 400_000) continue;
     const text = fs.readFileSync(full, 'utf8');
     const n = text.split('\n').length;
     lines += n;
+    readTokens += estTokens(text);
+    if (n >= ANCHOR_MIN_LINES) { const a = anchors(text); if (a.length) anchored.push({ rel, n, a }); }
     for (const m of text.matchAll(/\.from\(\s*['"]([\w-]+)['"]\s*\)|storage\s*\.from\(\s*['"]([\w-]+)['"]/g)) tables.add(m[1] || m[2]);
     for (const imp of localImports(rel, text)) (usedBy[imp] ??= []).push(rel);
     rows.push({ rel, n, syms: symbols(rel, text) });
@@ -202,7 +230,7 @@ function buildCodeMap(dir) {
     `# מפת הקוד: ${name}`,
     '',
     'קוראים את המפה הזו לפני פתיחת קבצים. פותחים רק את הקובץ שהמשימה צריכה, ובטווח שורות כשאפשר.',
-    `**${rows.length}** קבצים, **${lines}** שורות. קריאה של הכול: כ-**${Math.round(lines * 10)}** טוקנים. המפה: כ-**MAPTOK** טוקנים (הערכה).`,
+    `**${rows.length}** קבצים, **${lines}** שורות. קריאה של הכול: כ-**${readTokens}** טוקנים. המפה: כ-**MAPTOK** טוקנים (הערכה).`,
     '',
   ];
   if (tables.size) md.push(`טבלאות ודליים שהקוד פונה אליהם: ${[...tables].sort().map((t) => `\`${t}\``).join(', ')}`, '');
@@ -215,10 +243,14 @@ function buildCodeMap(dir) {
     }
   }
   md.push('');
+  if (anchored.length) {
+    md.push(`## עוגנים בקבצים הגדולים (${ANCHOR_MIN_LINES} שורות ומעלה)`, '', 'פותחים בטווח שורות סביב העוגן (offset ו-limit), לא את כל הקובץ.', '');
+    for (const f of anchored) md.push(`**\`${f.rel}\`** (${f.n}): ` + f.a.join(' · '), '');
+  }
   let out = md.join('\n');
   out = out.replace('MAPTOK', String(estTokens(out)));
   fs.writeFileSync(path.join(dir, 'CODEMAP.md'), out);
-  console.log(`CODEMAP.md: ${rows.length} files, ${lines} lines, map ~${estTokens(out)} tokens vs ~${lines * 10} for reading everything`);
+  console.log(`CODEMAP.md: ${rows.length} files, ${lines} lines, ${anchored.length} anchored; map ~${estTokens(out)} tokens vs ~${readTokens} for reading everything`);
 }
 
 const [mode, arg] = process.argv.slice(2);
