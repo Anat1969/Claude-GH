@@ -27,7 +27,7 @@
   - Action בשם `.github/workflows/build-app.yml`: רץ על כל דחיפה ל-main (עם `paths-ignore: app/**`) ועל workflow_dispatch, עם `permissions: contents: write`. הוא בונה את `app/` ודוחף אותה רק אם השתנתה.
   - `vercel.json` עם `ignoreCommand` שמדלג על קומיט שמשנה רק את `app/`, כדי שהבנייה האוטומטית לא תשרוף פריסות.
   - ניתוב hash, נכסים בנתיב יחסי, ו-service worker נרשם רק כשהבסיס הוא `/`.
-  - הכתובת: `https://raw.githack.com/<owner>/<repo>/main/app/index.html`. ב-raw.githack מופיע לפעמים דף ביניים "One more step": לוחצים "Open the page" פעם אחת. בבדיקת Playwright לוחצים עליו לפני הבדיקה, ובהודעת המסירה מציינים זאת לענת. היא מופיעה ב-README מתחת לקישור הראשי, ב-CLAUDE.md, ובכל הודעת מסירה לצד כתובת Vercel.
+  - הכתובת: GitHub Pages של הריפו, כשהוא מופעל. אחרת `https://raw.githack.com/<owner>/<repo>/main/app/index.html`, ואומרים לענת מראש שיש לחיצה אחת בדף ביניים. סדר הקישורים המלא: סעיף 0 ב-CLAUDE.md, "קישור ישיר בכל מסירה".
   - אתר סטטי בלי בנייה: אותה כתובת ישירות לקובץ ה-HTML ב-main.
   - **כשאין מכסת פריסה** (כלל ענת, 03.11.2026): הקישור נוצר ונמסר באותה עבודה, לא אחרי הפריסה. אם לאפליקציה עוד אין `app/`, מוסיפים אותו עכשיו, כחלק מהמשימה. הפריסה ל-Vercel מתוזמנת לרגע שמתפנה מקום (`send_later`), ונבדקת שם.
   - **אפליקציית שרת** (Next.js, API routes, כניסה), שאין לה גרסה סטטית:
