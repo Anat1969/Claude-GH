@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**45539** טוקנים. הליבה לבדה: כ-**2547** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**45605** טוקנים. הליבה לבדה: כ-**2547** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -40,7 +40,7 @@
 | `ab-10` | בניית אפליקציות: 10. תזמון, משאבים ושעות השינה של ענת | 1160 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-10.md |
 | `ab-11` | בניית אפליקציות: 11. השבחה בדרך: כל מגע באפליקציה משדרג אותה | 1316 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-11.md |
 | `dl-intro` | שפת העיצוב: פתיחה | 621 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-intro.md |
-| `dl-1` | שפת העיצוב: 1. שכבה קבועה | 685 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-1.md |
+| `dl-1` | שפת העיצוב: 1. שכבה קבועה | 751 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-1.md |
 | `dl-2.0` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / פתיחה | 91 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.0.md |
 | `dl-2.1` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.1 היררכיה, השחרה והבלטה | 319 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.1.md |
 | `dl-2.2` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.2 צבע עם משמעות | 253 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.2.md |
