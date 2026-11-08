@@ -39,7 +39,7 @@ const PHI = 1.618, MAX_FOCAL = 8, MAX_CENTER = 5, COL_MIN = 1.5, COL_MAX = 1.75;
           const pts = mode === 'center' ? [[W / 2, H / 2, 'מרכז']] :
             [[W * 2 / 3, H / 3, 'ימין־עליון'], [W / 3, H / 3, 'שמאל־עליון'], [W * 2 / 3, H * 2 / 3, 'ימין־תחתון'], [W / 3, H * 2 / 3, 'שמאל־תחתון']];
           const best = pts.map(([x, y, n]) => ({ n, d: Math.hypot(cx - x, cy - y) / D * 100 })).sort((a, b) => a.d - b.d)[0];
-          focal = { mode, auto, el: desc(f), inFirst: r.top < H * 0.75 && r.bottom > 0, point: best.n, dist: +best.d.toFixed(1), cx: Math.round(cx), cy: Math.round(cy) };
+          focal = { mode, auto, el: desc(f), point: best.n, dist: +best.d.toFixed(1), cx: Math.round(cx), cy: Math.round(cy) };
         }
         let mn = document.querySelector('[data-col="main"]'), sd = document.querySelector('[data-col="side"]');
         let cols = null, colsAuto = false;
@@ -75,9 +75,8 @@ const PHI = 1.618, MAX_FOCAL = 8, MAX_CENTER = 5, COL_MIN = 1.5, COL_MAX = 1.75;
         return { focal, cols, colsAuto };
       }, { PHI });
       const isMob = name === 'mob';
-      // נייד: חוק השלישים לא חל (המוקד ברוחב מלא והדף נגלל). בודקים רק שהמוקד נראה במסך הראשון.
       // מוקד אוטומטי הוא הערכה: מזהיר (WARN) ולא מכשיל. פסיקה מחייבת דורשת data-focal.
-      const fOff = !m.focal ? true : isMob ? !m.focal.inFirst : m.focal.dist > (m.focal.mode === 'center' ? MAX_CENTER : MAX_FOCAL);
+      const fOff = !m.focal ? true : m.focal.dist > (m.focal.mode === 'center' ? MAX_CENTER : MAX_FOCAL);
       const fBad = fOff && m.focal && !m.focal.auto;
       const warn = fOff && (!m.focal || m.focal.auto);
       const cBad = !isMob && typeof m.cols === 'number' && (m.cols < COL_MIN || m.cols > COL_MAX);
@@ -85,7 +84,7 @@ const PHI = 1.618, MAX_FOCAL = 8, MAX_CENTER = 5, COL_MIN = 1.5, COL_MAX = 1.75;
       if (bad) fail++;
       const file = `${out}-${name}-${(h || 'root').replace(/\W/g, '')}.png`;
       await p.screenshot({ path: file });
-      const fTxt = !m.focal ? 'focal MISSING (add data-focal)' : `focal${m.focal.auto ? '(auto ' + m.focal.el + ')' : ''} ` + (isMob ? `in first screen: ${m.focal.inFirst}` : `${m.focal.dist}% from ${m.focal.point} (max ${m.focal.mode === 'center' ? MAX_CENTER : MAX_FOCAL})`);
+      const fTxt = !m.focal ? 'focal MISSING (add data-focal)' : `focal${m.focal.auto ? '(auto ' + m.focal.el + ')' : ''} ${m.focal.dist}% from ${m.focal.point} (max ${m.focal.mode === 'center' ? MAX_CENTER : MAX_FOCAL})`;
       const cTxt = m.cols === null ? 'cols n/a' : `cols${m.colsAuto ? '(auto)' : ''} ${m.cols} (φ=${PHI}, ok ${COL_MIN}-${COL_MAX})`;
       console.log(`${bad ? 'FAIL' : warn ? 'WARN' : 'ok  '} ${name.padEnd(5)} ${(h || '/').padEnd(14)} ${fTxt}  ${cTxt}  ${file}`);
     }
