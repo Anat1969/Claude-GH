@@ -14,6 +14,7 @@ on:
       - .claude/skills/**
       - context/**
       - tools/context-map.mjs
+      - tools/variant-check.mjs
 permissions:
   contents: write
 jobs:
@@ -27,6 +28,9 @@ jobs:
       - name: Check on pull requests
         if: github.event_name == 'pull_request'
         run: node tools/context-map.mjs check
+      - name: Variant exceptions declared
+        if: github.event_name == 'pull_request'
+        run: node tools/variant-check.mjs
       - name: Regenerate on main
         if: github.event_name == 'push'
         run: |
