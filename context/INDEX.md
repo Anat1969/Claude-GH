@@ -2,17 +2,17 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**45839** טוקנים. הליבה לבדה: כ-**2547** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**47918** טוקנים. הליבה לבדה: כ-**2597** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
 | `cl-intro` | הנחיות־העל: פתיחה | 280 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-intro.md |
-| `cl-0` | הנחיות־העל: 0. רמה 999 | 2113 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-0.md |
-| `cl-1` | הנחיות־העל: 1. שפה ודיאלוג | 1067 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-1.md |
+| `cl-0` | הנחיות־העל: 0. רמה 999 | 2141 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-0.md |
+| `cl-1` | הנחיות־העל: 1. שפה ודיאלוג | 1205 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-1.md |
 | `cl-2` | הנחיות־העל: 2. תהליך עבודה | 718 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-2.md |
 | `cl-3` | הנחיות־העל: 3. בעלות ולוגו | 322 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-3.md |
 | `cl-4` | הנחיות־העל: 4. מבנה קבוע בכל אפליקציה | 389 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-4.md |
-| `cl-5` | הנחיות־העל: 5. שפת עיצוב | 860 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-5.md |
+| `cl-5` | הנחיות־העל: 5. שפת עיצוב | 1002 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-5.md |
 | `cl-6` | הנחיות־העל: 6. נתונים ותשתית | 352 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-6.md |
 | `cl-7` | הנחיות־העל: 7. כלי אמיתי, לא בכאילו | 284 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-7.md |
 | `cl-8` | הנחיות־העל: 8. בדיקה ומסירה | 325 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-8.md |
@@ -23,12 +23,12 @@
 | `cl-10a` | הנחיות־העל: 10א. זיכרון משותף בין שיחות | 276 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10a.md |
 | `cl-10b` | הנחיות־העל: 10ב. עבודה חכמה וכלכלית: מה שענת לא צריכה להגיד שוב | 693 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10b.md |
 | `cl-11` | הנחיות־העל: 11. חיסכון בטוקנים | 257 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-11.md |
-| `cl-log` | הנחיות־העל: יומן תיקונים | 5728 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
+| `cl-log` | הנחיות־העל: יומן תיקונים | 5854 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
 | `cl-learned` | הנחיות־העל: למדנו בבנייה | 842 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-learned.md |
 | `ab-intro` | בניית אפליקציות: פתיחה | 463 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-intro.md |
 | `ab-0.0` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / פתיחה | 2063 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-0.0.md |
 | `ab-s2` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / סקילים חיצוניים | 254 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-s2.md |
-| `ab-1` | בניית אפליקציות: 1. דיאלוג שמשתפר משיחה לשיחה | 767 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-1.md |
+| `ab-1` | בניית אפליקציות: 1. דיאלוג שמשתפר משיחה לשיחה | 1213 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-1.md |
 | `ab-2` | בניית אפליקציות: 2. אפיון לפני קוד, בתוך התשובה | 962 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-2.md |
 | `ab-3` | בניית אפליקציות: 3. כלי אמיתי, לא בכאילו | 433 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-3.md |
 | `ab-4` | בניית אפליקציות: 4. מבנה קבוע בכל אפליקציה | 756 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-4.md |
@@ -48,15 +48,16 @@
 | `dl-2.4` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.4 תקשור מידע בצורה ויזואלית | 540 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.4.md |
 | `dl-2.5` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.5 סדר וגריד | 122 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.5.md |
 | `dl-2.6` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.6 מקלט לפלט | 76 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.6.md |
-| `dl-2.7` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.7 לפני מסירה | 706 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.7.md |
+| `dl-2.7` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.7 לפני מסירה | 734 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.7.md |
 | `dl-2.8` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.8 בוררים, חיפוש, זמן ותצוגה | 1557 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.8.md |
 | `dl-2.9` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.9 מסך, מקום וזרימה | 1829 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.9.md |
 | `dl-2.10` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.10 סדר למידה ומבנה מידע | 1261 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.10.md |
 | `dl-2.11` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.11 הקלטה ותמלול בכל שדה כתיבה | 421 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.11.md |
 | `dl-2.12` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.12 שפת סימנים: סוג מידע, אייקון וכפתור חבוי | 942 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.12.md |
+| `dl-2.13` | שפת העיצוב: 2. קריאה ויזואלית ותקשור מידע / 2.13 קומפוזיציה הרמונית: שלישים, חתך הזהב ומשקל חזותי | 1086 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-2.13.md |
 | `dl-3` | שפת העיצוב: 3. שכבה ייחודית: תעודת DNA | 246 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-3.md |
 | `dl-4` | שפת העיצוב: 4. דף בית אמיתי | 654 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-4.md |
 | `dl-5` | שפת העיצוב: 5. דפוסי חוויה שעבדו | 310 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-5.md |
 | `dl-6` | שפת העיצוב: 6. בדיקה בעין | 179 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-6.md |
 | `dl-7` | שפת העיצוב: 7. שכבת ידע מוזיאלית: חיבורים, הקשרים וריכוזי ידע | 1164 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-7.md |
-| `dl-8` | שפת העיצוב: 8. רכיבים מוכנים | 524 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-8.md |
+| `dl-8` | שפת העיצוב: 8. רכיבים מוכנים | 610 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/dl-8.md |

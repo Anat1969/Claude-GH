@@ -116,3 +116,26 @@ mark.insight { background: linear-gradient(transparent 45%, var(--marker) 45%, v
 .pw { position: relative; display: flex; }
 .pw input { flex: 1; padding-inline-end: 64px; }
 .pw button { position: absolute; inset-inline-end: 4px; top: 50%; transform: translateY(-50%); }
+
+/* קומפוזיציה הרמונית (סעיף 2.13): חתך הזהב, שלישים, סולם φ, ורשת עבודה גלויה */
+:root {
+  --phi: 1.618;
+  --fs-body: clamp(15px, 0.9rem + 0.2vw, 16px);
+  --fs-h3: calc(var(--fs-body) * 1.25);          /* 20 */
+  --fs-h2: calc(var(--fs-body) * var(--phi));    /* 26 */
+  --fs-h1: calc(var(--fs-h2) * var(--phi));      /* 42 */
+}
+.golden { display: grid; grid-template-columns: 1.618fr 1fr; gap: 24px; min-height: 0; }   /* תוכן 61.8%, צד 38.2%. ב-RTL התוכן מימין */
+.golden-rev { display: grid; grid-template-columns: 1fr 1.618fr; gap: 24px; min-height: 0; }
+.thirds { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); min-height: 0; }
+.ratio-golden { aspect-ratio: 1.618 / 1; object-fit: cover; }
+.ratio-photo { aspect-ratio: 3 / 2; object-fit: cover; }
+@media (max-width: 760px) { .golden, .golden-rev { grid-template-columns: 1fr; } }
+/* רשת עבודה: ?grid=1 או body.show-grid. אפור: שלישים. צהוב: φ */
+body.show-grid::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 2147483647;
+  background:
+    linear-gradient(to right, transparent calc(33.333% - .5px), rgba(26,26,24,.35) 0 calc(33.333% + .5px), transparent 0 calc(66.666% - .5px), rgba(26,26,24,.35) 0 calc(66.666% + .5px), transparent 0),
+    linear-gradient(to bottom, transparent calc(33.333% - .5px), rgba(26,26,24,.35) 0 calc(33.333% + .5px), transparent 0 calc(66.666% - .5px), rgba(26,26,24,.35) 0 calc(66.666% + .5px), transparent 0),
+    linear-gradient(to right, transparent calc(38.2% - .5px), rgba(224,184,0,.8) 0 calc(38.2% + .5px), transparent 0 calc(61.8% - .5px), rgba(224,184,0,.8) 0 calc(61.8% + .5px), transparent 0);
+}
