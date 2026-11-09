@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**49022** טוקנים. הליבה לבדה: כ-**2597** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**49346** טוקנים. הליבה לבדה: כ-**2597** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -18,12 +18,12 @@
 | `cl-8` | הנחיות־העל: 8. בדיקה ומסירה | 325 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-8.md |
 | `cl-9` | הנחיות־העל: 9. מכסות ותזמון | 607 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9.md |
 | `cl-9a` | הנחיות־העל: 9א. השבחה בדרך | 77 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9a.md |
-| `cl-9b` | הנחיות־העל: 9ב. חוויית משתמש: דרישות של ענת שחוזרות בכל אפליקציה | 3307 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9b.md |
+| `cl-9b` | הנחיות־העל: 9ב. חוויית משתמש: דרישות של ענת שחוזרות בכל אפליקציה | 3572 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9b.md |
 | `cl-10` | הנחיות־העל: 10. למידה מתמשכת | 316 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10.md |
 | `cl-10a` | הנחיות־העל: 10א. זיכרון משותף בין שיחות | 276 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10a.md |
 | `cl-10b` | הנחיות־העל: 10ב. עבודה חכמה וכלכלית: מה שענת לא צריכה להגיד שוב | 693 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-10b.md |
 | `cl-11` | הנחיות־העל: 11. חיסכון בטוקנים | 257 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-11.md |
-| `cl-log` | הנחיות־העל: יומן תיקונים | 6085 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
+| `cl-log` | הנחיות־העל: יומן תיקונים | 6144 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
 | `cl-learned` | הנחיות־העל: למדנו בבנייה | 954 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-learned.md |
 | `ab-intro` | בניית אפליקציות: פתיחה | 463 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-intro.md |
 | `ab-0.0` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / פתיחה | 2063 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-0.0.md |
