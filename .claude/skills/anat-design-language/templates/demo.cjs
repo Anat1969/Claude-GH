@@ -13,7 +13,7 @@
 //
 // Film (script.style "film", for a video that moves rather than teaches): the caption is one large line, no counter and no
 // detail; "kicker" is a small line above the opening title; "closeBig" replaces the title on the closing card.
-// Music (script.music "wonder" | "calm" | "drive" | a file): composed by music.py, ducked under the narration, with a lift
+// Music (script.music "lively" (default choice: a tune of the lively family picked by the film's title, so films differ) | "bright" | "spring" | "stroll" | "carousel" | "sunrise" | "wonder" | "calm" | "drive" | a file): composed by music.py, ducked under the narration, with a lift
 // and a bell shimmer when the closing card opens.
 //
 // פלט: <outPrefix>.mp4 (H.264, מוכן לרשת), <outPrefix>.gif (קל, ל-README), <outPrefix>-poster.jpg (תמונת שער).
@@ -103,7 +103,10 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
   };
 
   const card = async (big, small, foot = '', ms = 2200, keep = false, vkey = '', kicker = '') => {
-    if (vkey) { mark(vkey); if (voices[vkey]) ms = Math.max(ms, voices[vkey].dur * 1000 + 700); }
+    // The opening sentence waits a second after the film starts (Anat, 2026-11-11: "אתה חותך את המילה הראשונה של הקריין"):
+    // it used to start at 0.1s, and a speaker that wakes up late swallowed the first word. Under 1s, so the freeze trim keeps it.
+    const hush = vkey === 'title' ? 1050 : 0;
+    if (vkey) { if (hush) setTimeout(() => mark(vkey), hush); else mark(vkey); if (voices[vkey]) ms = Math.max(ms, voices[vkey].dur * 1000 + 700) + hush; }
     await p.evaluate(({ big, small, foot, kicker, NAVY, AMBER, FONT }) => {
       const c = document.createElement('div');
       c.id = '__demo_card';
@@ -253,7 +256,7 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
       const total = parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', src]).toString()) - parseFloat(srcLead);
       const close = marks.find((m) => m.key === 'close');
       let bed = script.music;
-      if (!fs.existsSync(bed)) { bed = path.join(dir, 'music.wav'); execFileSync('python3', ['-I', path.join(__dirname, 'music.py'), bed, total.toFixed(2), script.music, (close ? atOut(close) : total - 6).toFixed(2)]); }
+      if (!fs.existsSync(bed)) { bed = path.join(dir, 'music.wav'); execFileSync('python3', ['-I', path.join(__dirname, 'music.py'), bed, total.toFixed(2), script.music === 'lively' ? `lively:${script.title || ''}` : script.music, (close ? atOut(close) : total - 6).toFixed(2)]); }
       ins.push('-i', bed);
       const mi = marks.length + 1;
       mix += `,aformat=sample_rates=44100:channel_layouts=stereo,asplit=2[v1][v2];[${mi}:a]atrim=0:${total.toFixed(2)},highpass=f=70,volume=${script.musicVolume ?? 0.42}[m];[m][v1]sidechaincompress=threshold=0.02:ratio=6:attack=30:release=600[md];[v2][md]amix=inputs=2:normalize=0:duration=longest,alimiter=limit=0.95[a]`;
