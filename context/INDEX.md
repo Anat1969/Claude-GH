@@ -2,12 +2,12 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**50650** טוקנים. הליבה לבדה: כ-**2616** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**50813** טוקנים. הליבה לבדה: כ-**2616** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
 | `cl-intro` | הנחיות־העל: פתיחה | 280 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-intro.md |
-| `cl-0` | הנחיות־העל: 0. רמה 999 | 2141 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-0.md |
+| `cl-0` | הנחיות־העל: 0. רמה 999 | 2222 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-0.md |
 | `cl-1` | הנחיות־העל: 1. שפה ודיאלוג | 1205 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-1.md |
 | `cl-2` | הנחיות־העל: 2. תהליך עבודה | 819 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-2.md |
 | `cl-3` | הנחיות־העל: 3. בעלות ולוגו | 322 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-3.md |
@@ -34,7 +34,7 @@
 | `ab-4` | בניית אפליקציות: 4. מבנה קבוע בכל אפליקציה | 756 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-4.md |
 | `ab-5` | בניית אפליקציות: 5. שפת עיצוב | 973 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-5.md |
 | `ab-6` | בניית אפליקציות: 6. מבנה נתונים דינמי | 342 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-6.md |
-| `ab-7` | בניית אפליקציות: 7. תשתית | 1223 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7.md |
+| `ab-7` | בניית אפליקציות: 7. תשתית | 1304 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7.md |
 | `ab-7a` | בניית אפליקציות: 7א. מהירות | 655 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7a.md |
 | `ab-8` | בניית אפליקציות: 8. בדיקה, גרסאות ומסירה | 1934 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-8.md |
 | `ab-9` | בניית אפליקציות: 9. מלכודות ידועות | 1834 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-9.md |
