@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**50813** טוקנים. הליבה לבדה: כ-**2616** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**50997** טוקנים. הליבה לבדה: כ-**2616** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -15,7 +15,7 @@
 | `cl-5` | הנחיות־העל: 5. שפת עיצוב | 1015 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-5.md |
 | `cl-6` | הנחיות־העל: 6. נתונים ותשתית | 352 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-6.md |
 | `cl-7` | הנחיות־העל: 7. כלי אמיתי, לא בכאילו | 284 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-7.md |
-| `cl-8` | הנחיות־העל: 8. בדיקה ומסירה | 435 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-8.md |
+| `cl-8` | הנחיות־העל: 8. בדיקה ומסירה | 527 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-8.md |
 | `cl-9` | הנחיות־העל: 9. מכסות ותזמון | 607 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9.md |
 | `cl-9a` | הנחיות־העל: 9א. השבחה בדרך | 77 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9a.md |
 | `cl-9b` | הנחיות־העל: 9ב. חוויית משתמש: דרישות של ענת שחוזרות בכל אפליקציה | 3572 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-9b.md |
@@ -36,7 +36,7 @@
 | `ab-6` | בניית אפליקציות: 6. מבנה נתונים דינמי | 342 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-6.md |
 | `ab-7` | בניית אפליקציות: 7. תשתית | 1304 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7.md |
 | `ab-7a` | בניית אפליקציות: 7א. מהירות | 655 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7a.md |
-| `ab-8` | בניית אפליקציות: 8. בדיקה, גרסאות ומסירה | 1934 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-8.md |
+| `ab-8` | בניית אפליקציות: 8. בדיקה, גרסאות ומסירה | 2026 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-8.md |
 | `ab-9` | בניית אפליקציות: 9. מלכודות ידועות | 1834 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-9.md |
 | `ab-10` | בניית אפליקציות: 10. תזמון, משאבים ושעות השינה של ענת | 1160 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-10.md |
 | `ab-11` | בניית אפליקציות: 11. השבחה בדרך: כל מגע באפליקציה משדרג אותה | 1510 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-11.md |
