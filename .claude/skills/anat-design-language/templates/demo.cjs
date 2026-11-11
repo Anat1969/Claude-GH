@@ -103,7 +103,10 @@ let FONT = '"IBM Plex Sans Hebrew", Arial, sans-serif';
   };
 
   const card = async (big, small, foot = '', ms = 2200, keep = false, vkey = '', kicker = '') => {
-    if (vkey) { mark(vkey); if (voices[vkey]) ms = Math.max(ms, voices[vkey].dur * 1000 + 700); }
+    // The opening sentence waits a second after the film starts (Anat, 2026-11-11: "אתה חותך את המילה הראשונה של הקריין"):
+    // it used to start at 0.1s, and a speaker that wakes up late swallowed the first word. Under 1s, so the freeze trim keeps it.
+    const hush = vkey === 'title' ? 1050 : 0;
+    if (vkey) { if (hush) setTimeout(() => mark(vkey), hush); else mark(vkey); if (voices[vkey]) ms = Math.max(ms, voices[vkey].dur * 1000 + 700) + hush; }
     await p.evaluate(({ big, small, foot, kicker, NAVY, AMBER, FONT }) => {
       const c = document.createElement('div');
       c.id = '__demo_card';
