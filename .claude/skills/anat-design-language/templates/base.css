@@ -107,6 +107,7 @@ mark.insight { background: linear-gradient(transparent 45%, var(--marker) 45%, v
 .scroll-in { overflow: auto; min-height: 0; } /* גלילה בתוך הרכיב, לא בדף */
 /* מוקד וטור צד: מוקד רחב, פרטים בטור משלו */
 .focus-aside { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 38.2%); gap: 16px; } /* יחס זהוב: תוכן 61.8%, צד 38.2% (סעיף 2.13) */
+@media (min-width: 921px) { .focus-aside { direction: ltr; } .focus-aside > * { direction: rtl; } } /* המסגרת הגדולה משמאל, טור הצד מימין (כלל ענת, 16.11.2026) */
 .dense-row { min-height: 32px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--rule-soft); }
 @media (max-width: 720px) {
   .app-shell { height: auto; min-height: 100dvh; overflow: visible; }
