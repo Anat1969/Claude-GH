@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**52311** טוקנים. הליבה לבדה: כ-**2616** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**52526** טוקנים. הליבה לבדה: כ-**2679** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -29,14 +29,14 @@
 | `ab-0.0` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / פתיחה | 2063 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-0.0.md |
 | `ab-s2` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / סקילים חיצוניים | 254 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-s2.md |
 | `ab-1` | בניית אפליקציות: 1. דיאלוג שמשתפר משיחה לשיחה | 1213 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-1.md |
-| `ab-2` | בניית אפליקציות: 2. אפיון לפני קוד, בתוך התשובה | 962 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-2.md |
+| `ab-2` | בניית אפליקציות: 2. אפיון לפני קוד, בתוך התשובה | 1066 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-2.md |
 | `ab-3` | בניית אפליקציות: 3. כלי אמיתי, לא בכאילו | 433 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-3.md |
 | `ab-4` | בניית אפליקציות: 4. מבנה קבוע בכל אפליקציה | 756 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-4.md |
 | `ab-5` | בניית אפליקציות: 5. שפת עיצוב | 973 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-5.md |
 | `ab-6` | בניית אפליקציות: 6. מבנה נתונים דינמי | 342 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-6.md |
 | `ab-7` | בניית אפליקציות: 7. תשתית | 1304 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7.md |
 | `ab-7a` | בניית אפליקציות: 7א. מהירות | 655 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-7a.md |
-| `ab-8` | בניית אפליקציות: 8. בדיקה, גרסאות ומסירה | 2284 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-8.md |
+| `ab-8` | בניית אפליקציות: 8. בדיקה, גרסאות ומסירה | 2395 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-8.md |
 | `ab-9` | בניית אפליקציות: 9. מלכודות ידועות | 1834 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-9.md |
 | `ab-10` | בניית אפליקציות: 10. תזמון, משאבים ושעות השינה של ענת | 1160 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-10.md |
 | `ab-11` | בניית אפליקציות: 11. השבחה בדרך: כל מגע באפליקציה משדרג אותה | 1510 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-11.md |
