@@ -49,7 +49,9 @@ for full in "$@"; do
     last=$(git log -1 --format=%cI "$ref")
     recent=$(git rev-list --count --since="$since" "${U[@]}" "$base..$ref")
     subj=$(git log -1 --format=%s "$ref" | python3 -c 'import sys,json;print(json.dumps(sys.stdin.read().strip()[:90])[1:-1])')
-    branches+="{\"name\":\"$ref\",\"ahead\":$ahead,\"recent\":$recent,\"last\":\"$last\",\"subject\":\"$subj\"},"
+    # behind: כמה קומיטים נכנסו ל-main מאז שהענף נחתך. מעל 10: ענף מבסיס ישן, מיזוג ישיר מסוכן
+    behind=$(git rev-list --count "$ref..$base")
+    branches+="{\"name\":\"$ref\",\"ahead\":$ahead,\"behind\":$behind,\"recent\":$recent,\"last\":\"$last\",\"subject\":\"$subj\"},"
   done
   subjects=$(git log --since="$since" "${U[@]}" --no-merges --format=%s "$base" | head -8 | python3 -c 'import sys,json;print(",".join(json.dumps(l.strip()[:120]) for l in sys.stdin if l.strip()))')
   printf '{"repo":"%s","main":"%s","main_sha":"%s","deploy_sha":"%s","main_date":"%s","main_commits_today":%s,"main_subjects":[%s],"unmerged":[%s]}\n' \
