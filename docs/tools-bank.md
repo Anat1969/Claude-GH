@@ -185,3 +185,18 @@ Next in the portfolio: plan for residents (urban renewal, clearance and rebuild)
 - **עיבוד על המכשיר למסמכים:** תלושי שכר, בקשה להיתר, הקלטות.
 - **שמירה בלי קליטה:** תור במכשיר לכל כלי השטח.
 - **תיעוד בשטח לתלונות ציבור ולמוקד 106.**
+
+## CLI-Anything (HKUDS/CLI-Anything)
+
+נבדק 18.11.2026, מתוך רייל בפייסבוק (Ben Kimball, 93 אלף צפיות). חולץ עם yt-dlp ופריימים, כי אין תמליל. הסרטון עצמו שיווקי, והעובדות אומתו מול הריפו.
+==תוכנה בלי MCP נהיית פקודה ש-Claude מריץ.== Apache-2.0, `pip install cli-anything-hub` (נבדק ורץ).
+
+| תוכנה | למה זה טוב באפליקציות | פקודה |
+|---|---|---|
+| draw.io | דיאגרמות מנגנון לדפי הסבר (תקשורת חזותית) | `cli-hub install drawio` |
+| LibreOffice | המרת מסמכים לאפליקציות עירייה | `cli-hub install libreoffice` |
+| Inkscape, GIMP | SVG ותמונות בשפת העיצוב | `cli-hub install inkscape` |
+| Blender, FreeCAD | תלת־ממד להמחשות | `cli-hub install blender` |
+
+רעיון לאפליקציה עתידית: "ארגז כלים" בתיק, שמריץ המרה על המכשיר מתוך הדפדפן.
+נראה גם ב: כלל בראש הבנק (מקבילה מקומית עדיפה). מומש: סקיל `cli-anything-bridge`, 18.11.2026.
