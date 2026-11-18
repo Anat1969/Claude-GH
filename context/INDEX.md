@@ -2,12 +2,12 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**55673** טוקנים. הליבה לבדה: כ-**2831** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**55737** טוקנים. הליבה לבדה: כ-**2831** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
 | `cl-intro` | הנחיות־העל: פתיחה | 280 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-intro.md |
-| `cl-0` | הנחיות־העל: 0. רמה 999 | 2567 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-0.md |
+| `cl-0` | הנחיות־העל: 0. רמה 999 | 2599 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-0.md |
 | `cl-1` | הנחיות־העל: 1. שפה ודיאלוג | 1205 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-1.md |
 | `cl-2` | הנחיות־העל: 2. תהליך עבודה | 819 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-2.md |
 | `cl-3` | הנחיות־העל: 3. בעלות ולוגו | 322 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-3.md |
@@ -27,7 +27,7 @@
 | `cl-log` | הנחיות־העל: יומן תיקונים | 7069 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-log.md |
 | `cl-learned` | הנחיות־העל: למדנו בבנייה | 1256 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-learned.md |
 | `ab-intro` | בניית אפליקציות: פתיחה | 463 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-intro.md |
-| `ab-0.0` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / פתיחה | 2408 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-0.0.md |
+| `ab-0.0` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / פתיחה | 2440 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-0.0.md |
 | `ab-s2` | בניית אפליקציות: 0. רמה 999: מה ענת מצפה לו בכל משימה / סקילים חיצוניים | 254 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-s2.md |
 | `ab-1` | בניית אפליקציות: 1. דיאלוג שמשתפר משיחה לשיחה | 1213 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-1.md |
 | `ab-2` | בניית אפליקציות: 2. אפיון לפני קוד, בתוך התשובה | 1066 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/ab-2.md |
