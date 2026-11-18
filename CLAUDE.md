@@ -133,7 +133,7 @@
 
 ## 9ב. כלי AI מאומצים (18.11.2026)
 
-פירוט: `docs/ai-tools-digest.md`.
+פירוט: `docs/ai-tools-digest.md`. הכללים פועלים אוטומטית, והם גם בסעיף 12 בסקיל `anat-app-builder` ובסקיל `anat-standards`.
 - **איפוס חינם של Claude** (Settings, Usage, Reset for free, עד 10.12.2026): לפני משימה גדולה בודקים אם נשאר, ומפעילים רק כשהמכסה נגמרה.
 - **שרשרת Gemini חינמית:** `gemini-4-hydrogen` ראשון (המזהה לא מאומת, 404 עובר למודל הבא), אחריו `gemini-flash-latest`. Claude רק גיבוי.
 - **שרטוט לפני בנייה:** מסלול מרכזי ומסכים על לוח (Whiteboards או Artifact) ואישור ויזואלי לפני קוד.
