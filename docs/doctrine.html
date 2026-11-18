@@ -1,0 +1,496 @@
+<title>תורת התקשורת החזותית</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: plan sheet. One 12-col grid; hero = text (right) + focal mechanism (left); detail always in a fixed side column. */
+:root{
+  --paper:#ffffff; --ink:#111214; --ink2:#3a3c40; --gray:#6d7076; --line:#e4e5e8; --wash:#f5f6f7;
+  --marker:#ffe45c; --marker-ink:#111214;
+  --problem:#b42318; --solution:#1d7a48;
+  --dot:#c9cbd0; --dot-on:#111214;
+  --shadow:0 1px 2px rgba(17,18,20,.08),0 4px 12px rgba(17,18,20,.06);
+  --shadow-up:0 2px 4px rgba(17,18,20,.10),0 10px 24px rgba(17,18,20,.10);
+  --sans:"IBM Plex Sans Hebrew",system-ui,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono","IBM Plex Sans Hebrew",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121315; --ink:#eceef0; --ink2:#c4c7cc; --gray:#9a9ea5; --line:#2a2d31; --wash:#1a1c1f;
+  --marker:#e8c93a; --marker-ink:#121315; --problem:#f0776b; --solution:#5cc48c;
+  --dot:#3a3d42; --dot-on:#eceef0;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); --shadow-up:0 2px 4px rgba(0,0,0,.5),0 10px 24px rgba(0,0,0,.4);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121315; --ink:#eceef0; --ink2:#c4c7cc; --gray:#9a9ea5; --line:#2a2d31; --wash:#1a1c1f;
+  --marker:#e8c93a; --marker-ink:#121315; --problem:#f0776b; --solution:#5cc48c;
+  --dot:#3a3d42; --dot-on:#eceef0;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.3); --shadow-up:0 2px 4px rgba(0,0,0,.5),0 10px 24px rgba(0,0,0,.4);
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;direction:rtl;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1440px;margin:0 auto}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+.lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--gray);text-transform:uppercase}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500;direction:ltr;unicode-bidi:isolate}
+mark{background:var(--marker);color:var(--marker-ink);padding:0 .15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+b{font-weight:600}
+.lat{font-weight:400;font-size:.8em;color:var(--gray)}
+.src{font-size:12px;color:var(--gray)}
+a{color:inherit}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);display:flex;align-items:center;gap:24px;
+  height:56px;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--paper)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;white-space:nowrap}
+.brand svg{flex:none}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.nav a{padding:8px 10px;text-decoration:none;color:var(--gray);font-size:14px;white-space:nowrap}
+.nav a:hover{color:var(--ink)}
+
+/* buttons: square, borderless, pressable */
+.btn{font:inherit;font-size:14px;border:0;border-radius:0;background:var(--wash);color:var(--ink);padding:8px 14px;cursor:pointer;
+  box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-up)}
+.btn:active{transform:translateY(1px);box-shadow:none}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+section{padding-block:56px 0}
+.shead{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;margin-bottom:24px;max-width:860px}
+.shead h2{font-size:clamp(24px,2.4vw,32px)}
+.shead .ins{font-size:17px;color:var(--ink2)}
+.how{font-size:13px;color:var(--gray)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;padding-block:40px 0;align-items:start}
+.hero h1{font-size:clamp(34px,4.2vw,58px);line-height:1.08}
+.hero .lead{font-size:clamp(19px,1.6vw,23px);margin-top:18px;line-height:1.45}
+.hero .expl{margin-top:16px;color:var(--ink2);display:grid;gap:4px}
+.keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.key{padding:14px 0 0;border-top:2px solid var(--ink)}
+.key h3{font-size:18px}
+.key p{font-size:14px;color:var(--ink2);margin-top:4px}
+.key .t{font-size:13px;color:var(--gray);margin-top:6px}
+
+.focal{background:var(--wash);box-shadow:var(--shadow);padding:20px 20px 16px;display:grid;gap:12px;min-width:0}
+.focal-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.focal-top h3{font-size:17px}
+.focal svg{width:100%;height:auto;display:block;overflow:visible}
+.focal .cap{min-height:3em;font-size:14px;color:var(--ink2);border-top:1px solid var(--line);padding-top:10px}
+.dot{fill:var(--dot);transition:transform .9s cubic-bezier(.2,.7,.2,1),fill .2s}
+.dot.on{fill:var(--dot-on)}
+.dot.hot{fill:var(--marker);stroke:var(--ink);stroke-width:1}
+.colnum{font-family:var(--mono);font-size:12px;fill:var(--gray)}
+.colnum.on{fill:var(--ink);font-weight:500}
+.colhit{fill:transparent;cursor:pointer}
+
+/* principles: list + fixed side panel */
+.pgrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px;align-items:start}
+.plist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pcard{all:unset;box-sizing:border-box;display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-rows:auto auto;column-gap:12px;row-gap:2px;
+  padding:14px 14px;background:var(--paper);box-shadow:var(--shadow);cursor:pointer;transition:transform .12s,box-shadow .12s;text-align:right}
+.pcard:hover{transform:translateY(-1px);box-shadow:var(--shadow-up)}
+.pcard:active{transform:translateY(1px);box-shadow:none}
+.pcard:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.pcard .n{grid-row:1/3;font-family:var(--mono);font-size:22px;font-weight:500;color:var(--gray);line-height:1.1}
+.pcard .nm{font-weight:600;font-size:16px}
+.pcard .one{font-size:13.5px;color:var(--ink2)}
+.pcard[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.pcard[aria-pressed="true"] .n,.pcard[aria-pressed="true"] .one{color:var(--paper);opacity:.85}
+.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);background:var(--wash);box-shadow:var(--shadow);padding:22px;display:grid;gap:14px;min-width:0}
+.side h3{font-size:24px}
+.side .says{font-size:16px}
+.side .test{background:var(--paper);padding:12px 14px;display:grid;gap:4px}
+.side ul{margin:0;padding:0 18px 0 0;display:grid;gap:4px;font-size:14px;color:var(--ink2)}
+.side .where{font-size:12px;color:var(--gray)}
+.side .nav2{display:flex;gap:8px;align-items:center;justify-content:space-between}
+
+/* representation table */
+.tbl-wrap{overflow-x:auto;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:760px;background:var(--paper);font-size:14.5px}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--gray);font-weight:500;text-align:right;padding:10px 12px;border-bottom:2px solid var(--ink)}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+td.kind{font-weight:600;white-space:nowrap}
+td.kind svg{vertical-align:-5px;margin-left:8px}
+td.no{color:var(--problem)}
+tr:hover td{background:var(--wash)}
+
+/* infantile vs pro */
+.vs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);box-shadow:var(--shadow);background:var(--paper)}
+.vs .hd{padding:12px 16px;font-weight:600;border-bottom:2px solid currentColor}
+.vs .hd.bad{color:var(--problem)} .vs .hd.good{color:var(--solution)}
+.vs .c{padding:9px 16px;border-bottom:1px solid var(--line);font-size:14.5px}
+.vs .c.bad{color:var(--ink2);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--problem) 55%,transparent)}
+.vs .c.good{font-weight:500}
+
+/* process + gate */
+.proc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:start}
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;background:var(--paper);box-shadow:var(--shadow);padding:14px}
+.step .sn{width:44px;height:44px;display:grid;place-items:center;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:18px}
+.step h3{font-size:16px}
+.step p{font-size:14px;color:var(--ink2)}
+.brief{margin:6px 0 0;padding:0 18px 0 0;font-size:14px;color:var(--ink2);display:grid;gap:2px}
+.gate{background:var(--wash);box-shadow:var(--shadow);padding:20px;display:grid;gap:12px}
+.gate-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.grow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.grow .gn{font-size:14.5px}
+.grow .gn .num{color:var(--gray);margin-left:6px}
+.score{display:flex;gap:4px}
+.score button{all:unset;box-sizing:border-box;width:32px;height:32px;display:grid;place-items:center;font-family:var(--mono);font-size:13px;cursor:pointer;
+  background:var(--paper);box-shadow:var(--shadow);transition:transform .1s}
+.score button:hover{transform:translateY(-1px)}
+.score button:active{transform:translateY(1px)}
+.score button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.score button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.score button[aria-pressed="true"].low{background:var(--problem);color:#fff}
+.verdict{padding:12px 14px;font-weight:600;background:var(--paper)}
+.verdict.pass{color:var(--solution)} .verdict.fail{color:var(--problem)} .verdict.wait{color:var(--gray);font-weight:400}
+.quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:13px}
+.quick div{background:var(--paper);padding:10px}
+.quick b{display:block;font-size:14px}
+
+/* canon timeline */
+.tl{overflow-x:auto;box-shadow:var(--shadow);background:var(--paper)}
+.tl svg{display:block;min-width:1100px;width:100%;height:auto}
+.tl text{font-family:var(--sans)}
+.tl .yr{font-family:var(--mono);font-weight:500;fill:var(--ink);font-size:13px}
+.tl .who{fill:var(--ink);font-weight:600;font-size:13px}
+.tl .lt{fill:var(--gray);font-size:11px}
+.tl .take{fill:var(--ink2);font-size:11.5px}
+.tl .ax{stroke:var(--ink);stroke-width:1.5}
+.tl .tick{stroke:var(--line);stroke-width:1}
+.tl .pt{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.tl .gap{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 4}
+
+/* quote + haiku */
+.coda{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px;align-items:end;padding-block:56px 0}
+.quote{font-size:clamp(26px,3vw,40px);font-weight:600;line-height:1.2}
+.quote .tr{font-family:var(--mono);font-size:11px;color:var(--gray);font-weight:400;display:block;margin-bottom:8px;letter-spacing:.06em}
+.quote .orig{display:block;font-size:15px;font-weight:400;color:var(--gray);margin-top:10px;direction:ltr;text-align:right}
+.haiku{border-right:2px solid var(--ink);padding-right:16px;display:grid;gap:2px;font-size:18px}
+.haiku .about{font-size:12.5px;color:var(--gray);margin-top:8px}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--gray)}
+
+@media (max-width:1000px){
+  .hero,.pgrid,.proc,.coda{grid-template-columns:minmax(0,1fr)}
+  .side{position:static}
+}
+@media (max-width:620px){
+  .keys{grid-template-columns:minmax(0,1fr)}
+  .plist{grid-template-columns:minmax(0,1fr)}
+  .vs{grid-template-columns:minmax(0,1fr) minmax(0,1fr);font-size:13px}
+  .vs .c{padding:8px 10px;font-size:13px}
+  .quick{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nav{display:none}
+  .grow{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header class="bar">
+  <a class="brand" href="#top" aria-label="לראש הדף">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="1" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M1 9h24M9 9v16" stroke="currentColor" stroke-width="1.75"/><rect x="13" y="13" width="8" height="8" fill="var(--marker)"/></svg>
+    <span>תורת התקשורת החזותית</span>
+  </a>
+  <nav class="nav" aria-label="ניווט בדף">
+    <a href="#principles">עשרה עקרונות</a>
+    <a href="#forms">ייצוג לפי מידע</a>
+    <a href="#vs">מקצועי מול אינפנטילי</a>
+    <a href="#gate">תהליך ושער</a>
+    <a href="#canon">הקאנון</a>
+  </nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div>
+    <div class="lbl">Claude-GH · DOCTRINE.md · 04.11.2026</div>
+    <h1 style="margin-top:10px">מ-<span class="num">107</span> כללים לעשרה עקרונות</h1>
+    <p class="lead"><mark>הערה שחוזרת היא עיקרון שלא הופנם.</mark></p>
+    <div class="expl">
+      <p>הכללים נצברו כיומן תיקונים, כל אחד לפי <b>סימפטום</b> במסך אחד.</p>
+      <p>מי שלומד סימפטומים מתקן את המקרה, וחוזר על הטעות במסך הבא.</p>
+      <p>כאן כל כלל משויך ל<b>עיקרון</b>, ולכל עיקרון יש <b>מבחן עין</b>.</p>
+    </div>
+    <div class="keys">
+      <div class="key"><div class="lbl">מה ולמי</div><h3>אסטרטגיה</h3><p>מסר במשפט, קהל, והחלטה. לפני פיקסל.</p><p class="t">מבחן: שורת תובנה עד <b class="num">8</b> מילים.</p></div>
+      <div class="key"><div class="lbl">איך בנוי</div><h3>קומפוזיציה</h3><p>מוקד אחד, שלוש רמות, גריד אחד.</p><p class="t">מבחן: מטשטשים. רואים מוקד וסדר?</p></div>
+      <div class="key"><div class="lbl">איך נעים</div><h3>סירקולציה</h3><p>כניסה בימין למעלה, מסלול עין, מסדרון וחדרים.</p><p class="t">מבחן: כל תוכן בעד <b class="num">2</b> לחיצות.</p></div>
+    </div>
+  </div>
+
+  <figure class="focal" style="margin:0" aria-labelledby="focal-h">
+    <div class="focal-top">
+      <h3 id="focal-h">כל נקודה היא כלל. כל עמוד הוא עיקרון.</h3>
+      <button class="btn" id="replay" type="button" aria-pressed="false">הצג כיומן</button>
+    </div>
+    <svg id="dots" viewBox="0 30 640 286" role="img" aria-label="107 כללים מסודרים בעשרה עמודים לפי העיקרון שלהם"></svg>
+    <figcaption class="cap" id="cap"><b>מתחת לכל עמוד:</b> מספר העיקרון, ומתחתיו כמה כללים נגזרים ממנו.<br><b>איך משתמשים:</b> ריחוף על נקודה מציג את הכלל. לחיצה על עמוד פותחת את העיקרון. "הצג כיומן" מפזר את הכללים כפי שנצברו, בלי סדר.</figcaption>
+  </figure>
+</div>
+
+<section id="principles">
+  <div class="shead">
+    <div class="lbl">עשרה עקרונות</div>
+    <h2>כל הערה שלך שייכת לאחד מהם</h2>
+    <p class="ins">לכל עיקרון: מה הוא אומר, מבחן אחד בעין, והכללים שנגזרים ממנו.</p>
+    <p class="how">איך משתמשים: לוחצים על עיקרון, והפירוט נפתח בטור הצד. חצים במקלדת עוברים בין עקרונות.</p>
+  </div>
+  <div class="pgrid">
+    <div class="plist" id="plist" role="group" aria-label="עקרונות"></div>
+    <aside class="side" id="side" aria-live="polite"></aside>
+  </div>
+</section>
+
+<section id="forms">
+  <div class="shead">
+    <div class="lbl">עיקרון 5 בפועל</div>
+    <h2>קודם סוג המידע, אחר כך הצורה</h2>
+    <p class="ins">מקום הוא מפה, זמן הוא ציר, ומנגנון הוא תרשים שזז. הדוגמאות מהעיר.</p>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>סוג המידע</th><th>הייצוג הנכון</th><th>פסול</th><th>דוגמה מהעיר</th></tr></thead>
+    <tbody id="forms-body"></tbody>
+  </table></div>
+</section>
+
+<section id="vs">
+  <div class="shead">
+    <div class="lbl">עיקרון 10 בפועל</div>
+    <h2>רצינות היא כבוד למשתמש</h2>
+    <p class="ins">ימין: מה שנראה ילדותי. שמאל: מה שעושים במקומו.</p>
+  </div>
+  <div class="vs" id="vs-body"><div class="hd bad">אינפנטילי</div><div class="hd good">מקצועי</div></div>
+</section>
+
+<section id="gate">
+  <div class="shead">
+    <div class="lbl">תהליך</div>
+    <h2>תדריך לפני קוד, שער לפני מסירה</h2>
+    <p class="ins">ארבעה שלבים בסדר קבוע. השער הוא המקום שבו ההערות שלך נתפסות לפני שאת רואה אותן.</p>
+  </div>
+  <div class="proc">
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div><h3>תדריך בחמש שורות</h3><p>בתשובה וב-CLAUDE.md של האפליקציה, לפני שורת קוד:</p>
+        <ol class="brief"><li><b>מסר:</b> שורת התובנה של המסך.</li><li><b>קהל והחלטה:</b> מי מסתכל ומה הוא מחליט.</li><li><b>ייצוג:</b> לפי סוג המידע.</li><li><b>מוקד:</b> הדבר האחד הגדול.</li><li><b>סירקולציה:</b> כניסה, מסלול עין, המשך.</li></ol></div></div>
+      <div class="step"><div class="sn">2</div><div><h3>שלד במילים</h3><p>אזורי המסך על הגריד: סרגל, עדשה, מוקד, טור צד. לפני צבע ופרטים.</p></div></div>
+      <div class="step"><div class="sn">3</div><div><h3>בנייה</h3><p>השכבה הקבועה של השפה, ותעודת ה-DNA של האפליקציה.</p></div></div>
+      <div class="step"><div class="sn">4</div><div><h3>שער מנהל אמנותי</h3><p>צילום מסך ב-<span class="num">1440</span> וב-<span class="num">390</span>. ציון לכל עיקרון. <b>מתחת ל-<span class="num">4</span> בעיקרון אחד: לא מוסרים.</b></p></div></div>
+    </div>
+    <div class="gate">
+      <div class="gate-top"><h3 style="font-size:18px">השער: נסי על מסך אמיתי</h3><button class="btn" id="reset" type="button">איפוס</button></div>
+      <p class="how">איך משתמשים: מסתכלים על צילום מסך ומדרגים כל עיקרון. התוצאה מתעדכנת מיד.</p>
+      <div id="rows"></div>
+      <div class="verdict wait" id="verdict" aria-live="polite">עוד לא דורג.</div>
+      <div class="quick">
+        <div><b>חמש שניות</b>מבט אחד, משפט אחד על מה שלמדתי.</div>
+        <div><b>פזילה</b>מטשטשים. רואים מוקד וסדר?</div>
+        <div><b>אפור</b>בלי צבע. ההיררכיה עדיין עובדת?</div>
+        <div><b>הסרה</b>מוחקים אלמנט. נאבד מידע?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="canon">
+  <div class="shead">
+    <div class="lbl">הקאנון</div>
+    <h2>לא ממציאים עקרונות. לוקחים מהמקצוע, ואומרים ממי.</h2>
+    <p class="ins">ארבע מאות וחמישים שנה של ייצוג מידע, על ציר אחד.</p>
+    <p class="how">הנקודות מסודרות לפי סדר, לא לפי מרחק בשנים. הקו המקווקו מסמן קפיצה של <span class="num">326</span> שנים.</p>
+  </div>
+  <div class="tl"><svg id="tl" viewBox="0 30 1400 270" role="img" aria-label="ציר זמן של מקורות הקאנון"></svg></div>
+</section>
+
+<div class="coda">
+  <p class="quote"><span class="tr">תרגום</span>„מֵעַל לַכֹּל, הַרְאוּ אֶת הַנְּתוּנִים.“
+    <span class="orig">"Above all else show the data." <span class="src">Edward Tufte, The Visual Display of Quantitative Information, 1983</span></span></p>
+  <div class="haiku" aria-label="הייקו">
+    <span>קַו דְּיוֹ אֶחָד</span>
+    <span>מְחַבֵּר כִּכָּר לָרְחוֹב</span>
+    <span>הָעַיִן הוֹלֶכֶת</span>
+    <span class="about">מה ההייקו מאיר: סירקולציה מתחילה בקו אחד שהעין יכולה ללכת עליו.</span>
+  </div>
+</div>
+
+<footer>
+  <span>המקור: <a href="https://github.com/Anat1969/Claude-GH/blob/main/.claude/skills/anat-design-language/DOCTRINE.md" target="_blank" rel="noopener">DOCTRINE.md ב-Claude-GH</a></span>
+  <span>אד' ענת שטיבלמן A&amp;I</span>
+</footer>
+</main>
+</div>
+
+<script>
+const MAP = [{"n": 1, "rules": ["שורת תובנה עד 8 מילים", "כותרת שאומרת את העיקר", "טבלה וגרף כחומר גלם", "עם כל טבלה שורת תובנה", "גרף עם כותרת מסקנה", "גילויים ולא כלי", "מספר בלי פרשנות לא מוצג", "מטרת הדף בראשו (למה, מה עושים, מה יוצא)"], "where": "סקיל עיצוב 2.1, 2.4, 2.12; 9ב; CLAUDE.md 0"}, {"n": 2, "rules": ["מסך בשלוש רמות", "מוקד אחד", "אלמנט ליבה במקום קבוע", "חשיפה בשכבות", "דף בית עם אובייקט חוויתי אחד", "סדר למידה: היכרות, הבנה, יישום", "אזורים ממוספרים באותו מקום", "חקירה בתוך הדף", "פירורי לחם", "כרטיס פריט בסדר קבוע"], "where": "2.9 ד, 2.10, 4; 9ב; CLAUDE.md 0"}, {"n": 3, "rules": ["גריד מיושר", "רווחים 4/8/16/24/32", "סולם טיפוגרפי ורווח נדיב", "כרטיסים בגובה אחיד", "כל משפט בשורה חדשה", "שורות קבועות בכרטיס", "כפתורים באותו גודל בקבוצה", "תמונה לפי מבנה הטקסט ובאותו קו גובה", "טקסט לא בורח מהמסגרת"], "where": "1, 2.1, 2.5, 2.10; ux; בנק פתרונות"}, {"n": 4, "rules": ["בגודל המסך ובלי גלילה", "ניצול מלא עד 1800", "כרטיס צד בטור משלו", "מסך לא על מסך", "צפיפות 32 עד 40 לשורה", "סדרות קטנות", "בלי כפתורים בכאילו", "בלי שורות כפולות", "אייקוני תפעול בפינה ואיקס במקום \"סגירה\"", "בחירה פותחת במקום והרשימה נשארת", "נתון משני קטן ובהיר", "אפליקציית מידע בלי אזהרות משפטיות", "הקלטה במקום הקלדה"], "where": "2.8, 2.9 א, ד, 2.11; 9ב; ux; 5"}, {"n": 5, "rules": ["מקום כמפה", "זמן כציר", "מבנה על השרטוט", "תהליך מונפש", "דמויות כדיוקנאות", "נושא בדוגמה מייצגת", "קשר \"מי ← פועל ← מי\"", "פורמט קבוע לכל סוג מידע", "איכות ועוצמה בגרף ולא בפסקה", "מיקום ביחס לחלופה", "צירים מקבילים ולא קובייה", "זמן גם ליניארי"], "where": "2.4, 2.8, 2.10, 2.12; 9ב; CLAUDE.md 0"}, {"n": 6, "rules": ["לבן, אוויר ושחור", "צבע רק עם תפקיד", "רמזור", "בעיה, פתרון, תובנה", "מדרג לעוצמה", "גרדיאנט עם משמעות", "צבעי DNA כנקודות הדגשה", "בסיס מונוכרומטי ונושא בצבע חי", "כל ציר וגרף עם שורת \"מה אומר כל צבע\""], "where": "2.2, 2.9 ג, 2.12, 3; ux"}, {"n": 7, "rules": ["מיון כמקרא חי", "\"הכול\" עקבי בסוף השורה", "בורר אחד וחיפוש אחד", "מצבי כפתור אחידים", "תיקון מקומי הוא כלל", "אייקונים בשפה אחת", "קידוד משני כבוי כברירת מחדל", "אייקון במקום מילה בסט אחד", "דף מקרא", "כפתור חבוי מוסבר", "טיפול לפריט אחד ניתן לכולם", "סינון \"רק\", \"בלי\" ו\"הכול\""], "where": "1, 2.8, 2.12; ux; CLAUDE.md 0, 10"}, {"n": 8, "rules": ["כלל, תובנה ויישום לכל קשר", "מיקרו ומאקרו", "הקודם והבא", "תקציר בפורמט קבוע להשוואה", "קווים עם כיוון ושרשרת ממוספרת", "דוגמה עירונית", "שכבת ידע מוזיאלית", "צירוף לפני פריט", "מה דומה ומה שונה", "בחירת ישות פותחת דיוקן בהקשר", "תובנה לכל תחום", "מיון וקיבוץ לפי כמה קריטריונים"], "where": "2.8, 2.10, 7; 9ב; ux; builder 0"}, {"n": 9, "rules": ["תנועה מבוססת מדידה", "שעון זמן בלי הבהוב", "מפה וגלובוס מגיבים לעכבר", "איזומטריה ב-SVG", "Three.js בטעינה עצלנית", "הפחתת תנועה", "זום בגלגלת בכל מפה וגלובוס", "עומק במפה (צל, הבלטה)", "דף בית שמתחלף"], "where": "2.4, 2.8, 5; 9ב; ux; CLAUDE.md 0"}, {"n": 10, "rules": ["חתך עם תוויות ולא איור ילדותי", "תמונה של הפריט עצמו עם רישיון", "חור עדיף על תמונה מטעה", "מקור קטן ואפור", "עברית ולועזית", "ציטוט במירכאות", "כפתורים מרובעים", "בלי אמוג'י", "טקסט על תמונה על גרדיאנט כהה", "תמונה רק בפרופורציה שלה", "דגל SVG ליד כל מדינה", "מקורות במקום אחד", "כל אפליקציה מפיקה יצירות ברמת מיצג"], "where": "1, 2.3, 2.8, 2.12, 7; 9ב; ux; CLAUDE.md 0"}];
+const P = [
+ {n:1,nm:"מסר לפני כלי",one:"הגילוי מוצג לפני הטבלה והגרף.",says:"המשתמש רואה קודם את המסקנה: דפוס, קורלציה, ניגוד או דירוג. כותרת היא משפט שאומר משהו, לא תווית. מספר בלי פרשנות לא מוצג.",test:"מסתירים את הגרף. הכותרת לבדה עדיין מלמדת משהו?"},
+ {n:2,nm:"מוקד אחד, שלוש רמות",one:"דבר אחד גדול, וכל השאר תומך בו.",says:"עדשה (למה חשוב, מה דומה ומה שונה), מוקד חזותי, ופרטים בטור צד. סדר הלמידה הוא סדר המסך: מכירים, מבינים, מיישמים.",test:"חמש שניות. מבט אחד, ומשפט אחד על מה שלמדתי."},
+ {n:3,nm:"גריד אחד, קצב אחד",one:"כל קצה מיושר למשהו.",says:"כרטיסים, תמונות, תוויות וקווים על גריד אחד. רווחים בקצב 4/8/16/24/32: צפוף בתוך קבוצה, נדיב בין קבוצות.",test:"מותחים קו בכל קצה. הוא פוגש עוד שלושה אלמנטים?"},
+ {n:4,nm:"כל פיקסל עובד",one:"מקסימום מידע במינימום מקום, בלי לגלול.",says:"מה שלא נושא מידע יורד: מסגרת, קישוט, כפתור בכאילו. השוואה כסדרות קטנות. מה שלא נכנס עובר ללשונית או לטור צד, לא לגלילת הדף.",test:"מוחקים אלמנט בדמיון. המסך איבד מידע? אם לא, הוא יורד."},
+ {n:5,nm:"הצורה נגזרת מסוג המידע",one:"מקום הוא מפה, זמן הוא ציר.",says:"מזהים את סוג המידע ורק אז בוחרים ייצוג. כמות במיקום ובאורך, שהעין מודדת בדיוק, ולא בשטח או בגוון.",test:"מעצב מידע מקצועי היה בוחר באותו ייצוג?"},
+ {n:6,nm:"צבע הוא מידע",one:"לבן, אוויר ושחור. צבע רק עם תפקיד.",says:"כל צבע עונה על \"מה הוא אומר\": משמעות, נושא, מצב או ערך בסקאלה. גרדיאנט רק כשיש לו משמעות. עומק מצל ומשכבות, לא מצביעה.",test:"הופכים לשחור־לבן. ההיררכיה עדיין עובדת?"},
+ {n:7,nm:"סימן אחד, משמעות אחת",one:"אותו סימן אומר אותו דבר בכל מקום.",says:"כפתור מיון הוא גם המקרא, והסימן חוזר בכותרת, באריח ובמפה. בורר אחד, חיפוש אחד, כרטיס אחד. תיקון מקומי הוא כלל של השפה.",test:"מכסים את המקרא. אפשר לקרוא מהזיכרון של מסך קודם?"},
+ {n:8,nm:"הקשר הוא התוכן",one:"ידע מתגלה בחיבורים.",says:"קורלציה, השפעה, רצף, ניגוד, מיקרו ומאקרו. לכל קשר: הכלל, התובנה והיישום. מקום וזמן הם צירים למיון. דוגמה מהעיר בכל תוכן.",test:"המשתמש יודע עכשיו משהו על היחס בין דברים?"},
+ {n:9,nm:"תנועה ועומק מסבירים",one:"תנועה מראה תהליך, לא קישוט.",says:"מים עולים בשורש, שנים רצות, זרימה מתפצלת. תלת־ממד נותן חתך ופרספקטיבה. מפה וגלובוס מגיבים לעכבר. אנימציה נכנסת פעם אחת ונעצרת.",test:"מכבים את התנועה. איבדנו הבנה? אם לא, היא הייתה קישוט."},
+ {n:10,nm:"מקצועי, אמין, לא אינפנטילי",one:"רצינות היא כבוד למשתמש.",says:"ייצוג מדעי, טיפוגרפיה מדויקת, פלטה מאופקת. מקור לכל טענה, תמונה של הפריט עצמו, וחור גלוי עדיף על תמונה מטעה. כל כפתור עובד.",test:"אילו המסך היה תלוי בתערוכה, קולגה היה מצטט ממנו?"}
+];
+const FORMS = [
+ ["pin","מקום","מפה עם מקרא, זום והזזה. גלובוס כשההקשר עולמי","רשימת שמות מקומות","שכונות <b>אשדוד</b> <span class=lat>Ashdod</span> על מפה, לפי גיל הבינוי"],
+ ["time","זמן","ציר עם שנים מודגשות, סרגל שנה, לוח חודשי","תאריכים בפסקה","שלבי הבנייה של הנמל על ציר"],
+ ["bars","כמות והשוואה","סדרות קטנות, עמודות, נקודות על סקאלה משותפת","עוגה, תלת־ממד מזויף לגרף","צפיפות דיור ברובעים כסדרה קטנה"],
+ ["heat","עוצמה","מפת חום בסקאלה רציפה אחת","קשת צבעים","חום פני השטח ברחוב בצהריים"],
+ ["flow","מנגנון ותהליך","תרשים מונפש שמראה את הזרימה","רשימת שלבים","מי נגר מהגג אל החלחול"],
+ ["section","מבנה ומידות","חתך או תוכנית עם תוויות, בקו דיו","טקסט עם מספרים","חתך רחוב עם רוחב מדרכה ועצים"],
+ ["net","קשר ורשת","רשת עם כיוון, שרשרת ממוספרת, מי ← פועל ← מי","קווים בלי כיוון ובלי שם","קווי אוטובוס בין רובעים כמפה טופולוגית"],
+ ["ribbon","זרימה והתפלגות","פס זרימה מתפצל","טבלה של סכומים","התלוש: ברוטו שמתפצל לנטו ולניכויים"],
+ ["face","אדם","דיוקן בשפה אחידה, עם שנים ותחום","תמונה מקרית או אווטאר מצויר","האדריכלים שתכננו את העיר כגלריה"],
+ ["rule","כלל אצבע","אייקון קו אחד בשפה אחת, עם הנחיה","פסקה ארוכה","\"לשלב ולא לשלב\" כזוג אייקונים"],
+ ["page","טקסט ידע","כתבה בעמוד A4: ציטוט, תובנה, הייקו","בלוק טקסט אחיד","כתבה על כיכר העיר"]
+];
+const G = {
+ pin:'<path d="M12 21s-6-6.2-6-11a6 6 0 0 1 12 0c0 4.8-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/>',
+ time:'<path d="M3 12h18"/><path d="M6 9v6M12 7v10M18 9v6"/>',
+ bars:'<path d="M4 20V11M9 20V6M14 20V13M19 20V9"/><path d="M3 20h18"/>',
+ heat:'<rect x="3" y="5" width="18" height="14"/><path d="M3 12h18M9 5v14M15 5v14"/><rect x="9" y="5" width="6" height="7" fill="currentColor" stroke="none" opacity=".35"/>',
+ flow:'<path d="M4 6h8a4 4 0 0 1 4 4v8"/><path d="M13 15l3 3 3-3"/><path d="M4 11h4"/>',
+ section:'<path d="M3 18h18"/><path d="M6 18V9h5v9M14 18V6h4v12"/><path d="M3 21h4M17 21h4"/>',
+ net:'<circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6 8l5 8M18 8l-5 8"/>',
+ ribbon:'<path d="M3 7h9c3 0 4 2 6 2h3"/><path d="M3 7v6h9c3 0 4 3 6 3h3"/><path d="M12 13c3 0 4-2 6-2h3"/>',
+ face:'<circle cx="12" cy="9" r="4"/><path d="M5 21c1-4 4-6 7-6s6 2 7 6"/>',
+ rule:'<rect x="4" y="4" width="16" height="16"/><path d="M8 12l3 3 5-6"/>',
+ page:'<path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/>'
+};
+const VS = [
+ ["אמוג'י, קליפ־ארט, אייקונים צבעוניים","סט אייקוני קו אחד, בעובי אחד"],
+ ["איור מתוק, דמות מצוירת","חתך עם תוויות וקו דיו, צילום תיעודי"],
+ ["כפתורי גלולה, בועות, קו מסגרת","כפתור מרובע וסמוי: רקע, צל ותנועה"],
+ ["קשת צבעים, צבע לכל דבר","שחור ולבן, וצבע אחד או שניים עם תפקיד"],
+ ["גרדיאנט דקורטיבי, זוהר, נאון","גרדיאנט שאומר עונה, חודש או עוצמה"],
+ ["אנימציה קופצנית ומהבהבת","תנועה אחת שמראה תהליך, ונעצרת"],
+ ["גופן ידידותי ועגול","IBM Plex Sans Hebrew, ו-Mono לתוויות"],
+ ["כרטיסים גדולים וריקים","צפוף בתוך קבוצה, לובן בין קבוצות"],
+ ["תמונת סטוק כללית","תמונה של הפריט עצמו, עם קרדיט"],
+ ["ציון \"מצוין!\" ומדבקות","ציון עם כלל חישוב, מדידה ומגבלה"],
+ ["הכול באותו משקל","שלוש רמות, השחרה ומרקר אחד"],
+ ["מסך שמסביר במילים","מסך שמראה, ומילים שמעגנות"]
+];
+const CANON = [
+ [1543,"אנדראס וסאליוס","Andreas Vesalius","חתך, תוויות, קו מדויק"],
+ [1869,"שארל־ז'וזף מינאר","Charles Joseph Minard","שישה משתנים בתמונה אחת"],
+ [1923,"מקס ורטהיימר","Max Wertheimer","גשטלט: קרבה, דמיון, דמות ורקע"],
+ [1925,"אוטו נוירת וגרד ארנץ","Otto Neurath, Gerd Arntz","איזוטייפ: סימן אחד לכל מושג"],
+ [1933,"הארי בק","Harry Beck","טופולוגיה לפני גאוגרפיה"],
+ [1960,"קווין לינץ'","Kevin Lynch","שבילים, צמתים וציוני דרך"],
+ [1967,"ז'אק ברטן","Jacques Bertin","שבעת המשתנים החזותיים"],
+ [1972,"אוטל אייכר","Otl Aicher","פיקטוגרמות על גריד אחד"],
+ ["שנות ה-70","דיטר ראמס","Dieter Rams","פחות, אבל טוב יותר"],
+ [1981,"יוזף מילר־ברוקמן","Josef Müller-Brockmann","גריד אחד שמחזיק הכול"],
+ [1983,"אדוארד טאפטי","Edward Tufte","דיו־לנתון, סדרות קטנות"],
+ [1984,"קליבלנד ומקגיל","Cleveland & McGill","מיקום ואורך נמדדים בדיוק"],
+ [1988,"דון נורמן","Don Norman","מה לחיץ נראה לחיץ"],
+ [1992,"רוברט ברינגהרסט","Robert Bringhurst","שורה של 45 עד 75 תווים"],
+ [1996,"בן שניידרמן","Ben Shneiderman","סקירה, זום וסינון, פרטים"],
+ [2002,"סינתיה ברואר","Cynthia Brewer","סקאלות צבע עם משמעות"]
+];
+
+const $ = s => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t,a={},p) => {const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+const store = {get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let sel = +(store.get("doc-sel")||1) || 1;
+
+/* ---- focal: dots ---- */
+const svg = $("#dots"), cap = $("#cap");
+const W=640, colW=W/10, R=6.5, gapY=17, baseY=262;
+const dots=[]; const colEls=[];
+MAP.forEach((m,ci)=>{
+  const g = el("g",{},svg);
+  const cx = W - colW*(ci+0.5); // RTL: principle 1 on the right
+  const hit = el("rect",{x:cx-colW/2+2,y:20,width:colW-4,height:baseY+40,class:"colhit",tabindex:-1},g);
+  hit.addEventListener("click",()=>select(m.n,true));
+  m.rules.forEach((r,ri)=>{
+    const c = el("circle",{r:R,cx:0,cy:0,class:"dot"},g);
+    const x=cx, y=baseY - ri*gapY;
+    dots.push({c,n:m.n,r,x,y,sx:20+Math.random()*(W-40),sy:28+Math.random()*(baseY-28)});
+    c.addEventListener("mouseenter",()=>{c.classList.add("hot");cap.innerHTML=`<span class="lbl">עיקרון <span class="num">${m.n}</span> · ${P[m.n-1].nm}</span><br>${r}`;});
+    c.addEventListener("mouseleave",()=>c.classList.remove("hot"));
+  });
+  const t = el("text",{x:cx,y:baseY+30,"text-anchor":"middle",class:"colnum",direction:"ltr"},g); t.textContent=m.n;
+  const k = el("text",{x:cx,y:baseY+46,"text-anchor":"middle",class:"colnum",direction:"ltr"},g); k.textContent=m.rules.length;
+  colEls.push({n:m.n,t});
+});
+let scattered=false;
+function place(){dots.forEach(d=>{const x=scattered?d.sx:d.x,y=scattered?d.sy:d.y;d.c.style.transform=`translate(${x}px,${y}px)`;});
+  colEls.forEach(c=>c.t.parentNode.querySelectorAll(".colnum").forEach(e=>e.style.opacity=scattered?0:1));}
+place();
+$("#replay").addEventListener("click",e=>{scattered=!scattered;e.currentTarget.setAttribute("aria-pressed",scattered);
+  e.currentTarget.textContent=scattered?"סדר לפי עקרונות":"הצג כיומן";
+  cap.innerHTML=scattered?"<b>כך נראו הכללים:</b> יומן לפי תאריך, בלי סדר. כל הערה חדשה נוספה כנקודה בודדת.":"<b>כך הם נראים עכשיו:</b> כל כלל יושב בעמוד של העיקרון שלו. הערה חדשה מחדדת עמוד, לא מוסיפה נקודה יתומה.";
+  place();});
+
+/* ---- principles list + side ---- */
+const plist=$("#plist");
+P.forEach(p=>{const b=document.createElement("button");b.type="button";b.className="pcard";b.dataset.n=p.n;
+  b.innerHTML=`<span class="n num">${p.n}</span><span class="nm">${p.nm}</span><span class="one">${p.one}</span>`;
+  b.addEventListener("click",()=>select(p.n,false));
+  b.addEventListener("keydown",e=>{if(e.key==="ArrowDown"||e.key==="ArrowLeft"){e.preventDefault();select(sel%10+1,false,true)}
+    if(e.key==="ArrowUp"||e.key==="ArrowRight"){e.preventDefault();select((sel+8)%10+1,false,true)}});
+  plist.appendChild(b);});
+function select(n,scroll,focus){sel=n;store.set("doc-sel",n);
+  plist.querySelectorAll(".pcard").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===n));
+  if(focus)plist.querySelector(`[data-n="${n}"]`).focus();
+  dots.forEach(d=>d.c.classList.toggle("on",d.n===n));
+  colEls.forEach(c=>c.t.classList.toggle("on",c.n===n));
+  const p=P[n-1], m=MAP[n-1];
+  $("#side").innerHTML=`<div class="nav2"><span class="lbl">עיקרון <span class="num">${n}</span> מתוך <span class="num">10</span></span>
+    <span style="display:flex;gap:6px"><button class="btn" type="button" aria-label="הקודם" data-go="${(n+8)%10+1}">→</button><button class="btn" type="button" aria-label="הבא" data-go="${n%10+1}">←</button></span></div>
+    <h3>${p.nm}</h3><p class="says">${p.says}</p>
+    <div class="test"><span class="lbl">מבחן עין</span><b>${p.test}</b></div>
+    <div><div class="lbl" style="margin-bottom:6px">נגזרים ממנו · <span class="num">${m.rules.length}</span> כללים</div><ul>${m.rules.map(r=>`<li>${r}</li>`).join("")}</ul></div>
+    <p class="where">איפה כתוב: ${m.where}</p>`;
+  $("#side").querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>select(+b.dataset.go,false)));
+  if(scroll){const t=$("#principles").getBoundingClientRect();if(t.top>innerHeight||t.bottom<0)$("#principles").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}
+}
+select(sel,false);
+
+/* ---- forms ---- */
+$("#forms-body").innerHTML=FORMS.map(f=>`<tr><td class="kind"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">${G[f[0]]}</svg>${f[1]}</td><td>${f[2]}</td><td class="no">${f[3]}</td><td>${f[4]}</td></tr>`).join("");
+
+/* ---- vs ---- */
+$("#vs-body").insertAdjacentHTML("beforeend",VS.map(v=>`<div class="c bad">${v[0]}</div><div class="c good">${v[1]}</div>`).join(""));
+
+/* ---- gate ---- */
+let scores={}; try{scores=JSON.parse(store.get("doc-gate")||"{}")}catch(e){scores={}}
+function drawGate(){
+  $("#rows").innerHTML=P.map(p=>`<div class="grow"><span class="gn"><span class="num">${p.n}</span>${p.nm}</span><span class="score" role="group" aria-label="ציון ל${p.nm}">${[1,2,3,4,5].map(v=>`<button type="button" data-p="${p.n}" data-v="${v}" aria-pressed="${scores[p.n]===v}" class="${v<4?'low':''}">${v}</button>`).join("")}</span></div>`).join("");
+  $("#rows").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{scores[+b.dataset.p]=+b.dataset.v;store.set("doc-gate",JSON.stringify(scores));drawGate();}));
+  const vals=Object.values(scores), low=P.filter(p=>scores[p.n]&&scores[p.n]<4), v=$("#verdict");
+  if(!vals.length){v.className="verdict wait";v.textContent="עוד לא דורג.";}
+  else if(low.length){v.className="verdict fail";v.innerHTML=`לא עובר. לתקן: ${low.map(p=>p.nm).join(", ")}.`;}
+  else if(vals.length<10){v.className="verdict wait";v.innerHTML=`דורגו <span class="num">${vals.length}</span> מתוך <span class="num">10</span>. אין עדיין ציון נמוך.`;}
+  else{const avg=(vals.reduce((a,b)=>a+b,0)/10).toFixed(1);v.className="verdict pass";v.innerHTML=`עובר. ממוצע <span class="num">${avg}</span>. אפשר למסור, עם הטבלה.`;}
+}
+$("#reset").addEventListener("click",()=>{scores={};store.set("doc-gate","{}");drawGate();});
+drawGate();
+
+/* ---- canon timeline: ordinal axis, years bold ---- */
+(function(){
+  const s=$("#tl"), axY=165, xr=1305, xl=95, n=CANON.length, step=(xr-xl)/(n-1);
+  CANON.forEach((c,i)=>{
+    const x=xr-i*step, up=i%2===0, d=up?-1:1;
+    if(i<n-1){const nx=xr-(i+1)*step, big=(+CANON[i+1][0]||0)-(+c[0]||0)>100;
+      el("line",{x1:x,y1:axY,x2:nx,y2:axY,class:big?"gap":"ax"},s);}
+    el("line",{x1:x,y1:axY+d*7,x2:x,y2:axY+d*34,class:"tick"},s);
+    el("circle",{cx:x,cy:axY,r:5,class:"pt"},s);
+    const ys=up?[axY-100,axY-82,axY-67,axY-51]:[axY+54,axY+72,axY+87,axY+103];
+    [[c[0],"yr"],[c[1],"who"],[c[2],"lt"],[c[3],"take"]].forEach((l,j)=>{
+      const t=el("text",{x:x,y:ys[j],"text-anchor":"middle",class:l[1]},s);t.textContent=l[0];});
+  });
+})();
+</script>
