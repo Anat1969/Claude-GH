@@ -1,10 +1,25 @@
 {
   "extraKnownMarketplaces": {
     "cli-anything": {
-      "source": { "source": "github", "repo": "HKUDS/CLI-Anything" }
+      "source": {
+        "source": "github",
+        "repo": "HKUDS/CLI-Anything"
+      }
     }
   },
   "enabledPlugins": {
     "cli-anything@cli-anything": true
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -I \"$CLAUDE_PROJECT_DIR/.claude/hooks/hebrew-check.py\""
+          }
+        ]
+      }
+    ]
   }
 }

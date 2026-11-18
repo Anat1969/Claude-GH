@@ -109,9 +109,9 @@ Free to draw. Photorealistic render with credits: **$3.99** for 4. Export to PNG
 
 Next in the portfolio: plan for residents (urban renewal, clearance and rebuild), allowed volume (building-percentage and coverage exercise, Table 5), view from a wheelchair (MUNI 100), before and after.
 
-## קריינות בעברית (נבדק 03.11.2026, ענת בחרה: הילה)
+## קריינות בעברית (הוחלף 11.11.2026: הקול הקנוני הוא Gemini TTS, קול Aoede, ראו `rules/narrative.md`. הקולות של Edge שלמטה נפסלו כ"מכני, איטי, חסר חיים", ונשארו כגיבוי חינמי בלבד)
 
-- **הכלי:** `templates/tts.py`, עם הקולות של קריאה בקול ב-Microsoft Edge. בחינם ובלי מפתח. הקולות: `he-IL-HilaNeural` (הילה, הבחירה של ענת) ו-`he-IL-AvriNeural` (אברי).
+- **הכלי:** `templates/tts.py`, עם הקולות של קריאה בקול ב-Microsoft Edge. בחינם ובלי מפתח. הקולות: `he-IL-HilaNeural` (הילה, נבחר ב-03.11.2026 ובוטל) ו-`he-IL-AvriNeural` (אברי).
 - **הערכה, לא עובדה:** זה שימוש לא רשמי בשירות. הוא עובד היום, ואין התחייבות שימשיך לעבוד. החלופה הרשמית: Google Cloud Text-to-Speech, עם מפתח וחשבון חיוב.
 - **בתסריט:** `"voice": "he-IL-HilaNeural"`, ולכל סצנה `"say"`. גם `sayTitle` ו-`sayClose` לכרטיסים.
   - כל סצנה נמשכת לפחות כמו המשפט שלה.

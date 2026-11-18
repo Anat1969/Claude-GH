@@ -52,3 +52,5 @@ Example of a field written to the standard:
 ```
 **נקודת מבט** חדשה על מצב תקוע. משחקי קלפים של **פנים** ושל **אימון** פותחים זווית שלא נראתה קודם.
 ```
+
+Output filter (18.11.2026): Gemini sometimes inserts an Arabic letter inside a Hebrew word. Strip non-Hebrew letters from Hebrew fields before saving.
