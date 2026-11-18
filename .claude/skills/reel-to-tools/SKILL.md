@@ -10,7 +10,7 @@ description: מזקק רייל, סרטון, אתר או כתבה שענת שול
 
 ## 1. חילוץ
 
-- **פייסבוק, אינסטגרם ו-YouTube חוסמים WebFetch.** משתמשים ב-Apify:
+- **פייסבוק, אינסטגרם ו-YouTube חוסמים WebFetch.** כש-Apify לא מחובר: `pip install -q yt-dlp && yt-dlp -o reel.mp4 <URL>` מוריד רייל מפייסבוק (נבדק 18.11.2026), ואז פריימים עם ffmpeg. אחרת משתמשים ב-Apify:
   - פייסבוק: `apivault_labs/facebook-reels-video-scraper`, עם `workflow: "videoUrls"`, `startUrls` כמערך של מחרוזות, `downloadMp4: true`, `includeTranscript: true`, ו-`callOptions.maxTotalChargeUsd: 0.05`. העלות כ-**$0.004** לרייל.
   - אינסטגרם: `apify/instagram-reel-scraper`, עם `includeTranscript`.
   - YouTube, כולל Shorts: `johnvc/YoutubeTranscripts`, עם `youtube_url` ו-`languages: ["iw", "he"]` (YouTube מסמן עברית כ-`iw`). העלות כ-**$0.003** לסרטון, וסרטון בלי כתוביות לא מחויב. נוסה ב-10.11.2026 על "20 בקשות לאפליקציה מהירה".
