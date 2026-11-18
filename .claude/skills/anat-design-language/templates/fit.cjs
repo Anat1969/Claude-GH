@@ -22,14 +22,16 @@ const SIZES = [['1920', 1920, 1080], ['1440', 1440, 900], ['1280', 1280, 720], [
           const r = el.getBoundingClientRect();
           if (r.width > 4 && r.height > 4 && r.top < H && r.bottom > 0 && r.left < W && r.right > 0) seen++;
         }
-        return { ratio: +(document.documentElement.scrollHeight / H).toFixed(2), hscroll: document.documentElement.scrollWidth > W, seen };
+        // טקסט כלוא: מסגרת גלילה פנימית נמוכה מ-60% מהמסך, שהתוכן שלה גבוה ממנה (ענת, 08.11.2026)
+        const traps = [...document.querySelectorAll('*')].filter(e => /(auto|scroll)/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight + 20 && e !== document.scrollingElement && e.clientHeight < H * 0.6).length;
+        return { ratio: +(document.documentElement.scrollHeight / H).toFixed(2), hscroll: document.documentElement.scrollWidth > W, seen, traps };
       });
       const limit = name === 'mob' ? 1.5 : 1.0;
-      const bad = m.hscroll || m.ratio > limit;
+      const bad = m.hscroll || (name === 'mob' ? m.traps > 0 : m.ratio > limit); // בנייד הדף נגלל כרגיל, ונכשל רק טקסט כלוא
       if (bad) fail++;
       const file = `${out}-${name}-${(h || 'root').replace(/\W/g, '')}.png`;
       await p.screenshot({ path: file });
-      console.log(`${bad ? 'FAIL' : 'ok  '} ${name.padEnd(5)} ${(h || '/').padEnd(16)} scroll ${m.ratio} (max ${limit})  hscroll ${m.hscroll}  info-in-view ${m.seen}  ${file}`);
+      console.log(`${bad ? 'FAIL' : 'ok  '} ${name.padEnd(5)} ${(h || '/').padEnd(16)} scroll ${m.ratio} (max ${limit})  hscroll ${m.hscroll}  info-in-view ${m.seen}  trapped ${m.traps}  ${file}`);
     }
     await p.close();
   }
