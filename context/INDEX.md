@@ -2,7 +2,7 @@
 # מפת ההנחיות
 
 קוראים את `context/CORE.md`, ואחריו רק את הסעיפים שהמשימה צריכה.
-הטעינה המלאה של שלושת המקורות: כ-**56510** טוקנים. הליבה לבדה: כ-**3045** טוקנים (הערכה).
+הטעינה המלאה של שלושת המקורות: כ-**56691** טוקנים. הליבה לבדה: כ-**3045** טוקנים (הערכה).
 
 | מזהה | סעיף | טוקנים (הערכה) | כתובת |
 |---|---|---|---|
@@ -11,7 +11,7 @@
 | `cl-1` | הנחיות־העל: 1. שפה ודיאלוג | 1245 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-1.md |
 | `cl-2` | הנחיות־העל: 2. תהליך עבודה | 907 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-2.md |
 | `cl-3` | הנחיות־העל: 3. בעלות ולוגו | 322 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-3.md |
-| `cl-4` | הנחיות־העל: 4. מבנה קבוע בכל אפליקציה | 389 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-4.md |
+| `cl-4` | הנחיות־העל: 4. מבנה קבוע בכל אפליקציה | 570 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-4.md |
 | `cl-5` | הנחיות־העל: 5. שפת עיצוב | 1105 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-5.md |
 | `cl-6` | הנחיות־העל: 6. נתונים ותשתית | 902 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-6.md |
 | `cl-7` | הנחיות־העל: 7. כלי אמיתי, לא בכאילו | 284 | https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/sections/cl-7.md |
