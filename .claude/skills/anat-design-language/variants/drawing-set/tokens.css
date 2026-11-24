@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@100;200;300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * שפת העיצוב 'גיליון שרטוט' (מקור: אפליקציית קשר).
+ * The tool is neutral greys only: paper, ink, hairlines, one soft shadow. Nothing bounces or glows.
+ * Colour belongs to the content only, in muted inks. No emoji anywhere in the interface.
+ */
+@layer base {
+  :root {
+    --bar-h: 6rem;
+
+    /* Tool: paper and ink (light) */
+    --background: 0 0% 96%;
+    --foreground: 0 0% 8%;
+    --surface-1: 0 0% 99.5%;
+    --surface-2: 0 0% 97.5%;
+    --surface-3: 0 0% 93%;
+
+    --card: 0 0% 99.5%;
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+    --primary: 0 0% 8%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 93%;
+    --secondary-foreground: 0 0% 8%;
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 38%;
+    --accent: 0 0% 93%;
+    --accent-foreground: 0 0% 8%;
+    --destructive: 0 0% 8%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 84%;
+    --hairline: 0 0% 0% / 0.1;
+    --input: 0 0% 84%;
+    --ring: 0 0% 15%;
+    --radius: 0px;
+
+    --shade: 0 0% 0%;
+    --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.04);
+    --shadow-md: 0 1px 2px hsl(0 0% 0% / 0.04), 0 10px 30px -18px hsl(0 0% 0% / 0.2);
+    --shadow-lg: 0 2px 4px hsl(0 0% 0% / 0.04), 0 30px 60px -32px hsl(0 0% 0% / 0.28);
+    --grid-line: 0 0% 0% / 0.035;
+
+    /* Content: the app's own categories as muted inks (rename and re-hue per app) */
+    --content-1: 214 38% 40%;
+    --content-2: 268 24% 45%;
+    --content-3: 16 45% 43%;
+    --content-4: 36 58% 35%;
+    --content-5: 152 26% 32%;
+
+    /* Content imagery and the reading marker */
+    --gold: 40 62% 42%;
+    --marker: 52 100% 62%;
+    --marker-alpha: 0.55;
+  }
+
+  .dark {
+    /* Tool: paper and ink (dark) */
+    --background: 0 0% 6%;
+    --foreground: 0 0% 92%;
+    --surface-1: 0 0% 9%;
+    --surface-2: 0 0% 8%;
+    --surface-3: 0 0% 12%;
+
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 92%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 92%;
+    --primary: 0 0% 92%;
+    --primary-foreground: 0 0% 7%;
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 92%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 0 0% 13%;
+    --accent-foreground: 0 0% 92%;
+    --destructive: 0 0% 92%;
+    --destructive-foreground: 0 0% 7%;
+    --border: 0 0% 20%;
+    --hairline: 0 0% 100% / 0.1;
+    --input: 0 0% 20%;
+    --ring: 0 0% 85%;
+
+    --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.4);
+    --shadow-md: 0 1px 2px hsl(0 0% 0% / 0.4), 0 12px 32px -18px hsl(0 0% 0% / 0.8);
+    --shadow-lg: 0 2px 4px hsl(0 0% 0% / 0.4), 0 30px 60px -30px hsl(0 0% 0% / 0.9);
+    --grid-line: 0 0% 100% / 0.03;
+
+    --content-1: 212 42% 68%;
+    --content-2: 268 28% 72%;
+    --content-3: 18 50% 64%;
+    --content-4: 40 52% 60%;
+    --content-5: 152 26% 58%;
+
+    --gold: 42 64% 62%;
+    --marker: 48 95% 52%;
+    --marker-alpha: 0.32;
+  }
+}
+
+@media (min-width: 768px) {
+  :root { --bar-h: 3.5rem; }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: light;
+    -webkit-tap-highlight-color: transparent;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  html, body { overflow-x: clip; }
+  body {
+    @apply text-foreground antialiased;
+    font-family: 'IBM Plex Sans Hebrew', system-ui, sans-serif;
+    font-weight: 300;
+    overscroll-behavior-y: none;
+    min-height: 100dvh;
+    /* A faint drafting grid on paper. */
+    background:
+      linear-gradient(hsl(var(--grid-line)) 1px, transparent 1px) 0 0 / 100% 64px,
+      linear-gradient(90deg, hsl(var(--grid-line)) 1px, transparent 1px) 0 0 / 64px 100%,
+      hsl(var(--background));
+    background-attachment: fixed;
+  }
+  strong, b { font-weight: 500; }
+  ::selection { background: hsl(var(--foreground)); color: hsl(var(--background)); }
+}
+
+@layer components {
+  /* Mono label: section kickers, units, captions. */
+  .label-mono {
+    font-family: 'IBM Plex Mono', 'IBM Plex Sans Hebrew', ui-monospace, monospace;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: hsl(var(--muted-foreground));
+  }
+  .num-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A sheet of paper resting on the table. */
+  .panel {
+    background: hsl(var(--surface-1));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+  }
+  .panel-flat {
+    background: hsl(var(--surface-1));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+  }
+  /* A recessed field: the board, tracks. */
+  .well {
+    background: hsl(var(--surface-3) / 0.6);
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: inset 0 1px 2px hsl(var(--shade) / 0.05);
+  }
+
+  .rule { border-top: 1px solid hsl(var(--border)); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    /* Fixed layer (Anat, 03.11.2026): square action buttons, no visible frame. A button reads as a
+       button from its soft ground, padding and shadow, a lift on hover and a sink on press. */
+    border-radius: 0;
+    border: 1px solid transparent;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    /* Press feedback 160ms ease-out (Emil Kowalski); colours ease, transform only for the press. */
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .btn:active:not(:disabled) { transform: scale(0.97); }
+  .btn:focus-visible {
+    outline: 1px solid hsl(var(--ring));
+    outline-offset: 3px;
+  }
+  .btn-primary {
+    color: hsl(var(--primary-foreground));
+    background: hsl(var(--primary));
+    box-shadow: 0 10px 24px -16px hsl(0 0% 0% / 0.6);
+  }
+  .btn-primary:hover { background: hsl(var(--primary) / 0.86); }
+  .btn-ghost {
+    color: hsl(var(--foreground));
+    background: hsl(var(--surface-2));
+    box-shadow: 0 1px 2px hsl(var(--shade) / 0.08), 0 6px 14px -10px hsl(var(--shade) / 0.35);
+  }
+  .btn-ghost:hover { background: hsl(var(--surface-3)); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover, .btn-ghost:hover { box-shadow: 0 2px 4px hsl(var(--shade) / 0.1), 0 12px 22px -12px hsl(var(--shade) / 0.45); }
+  }
+  .btn-text {
+    color: hsl(var(--muted-foreground));
+  }
+  .btn-text:hover { color: hsl(var(--foreground)); }
+
+  /* Large thin display numerals and headings. */
+  .display-num {
+    font-weight: 200;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+  }
+
+  /* Highlighter marker on the words that carry the meaning. */
+  .hl {
+    background: linear-gradient(transparent 52%, hsl(var(--marker) / var(--marker-alpha)) 52%, hsl(var(--marker) / var(--marker-alpha)) 92%, transparent 92%);
+    color: inherit;
+    font-weight: 500;
+    padding: 0 0.08em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Underline link that draws in on hover. */
+  .link-draw {
+    background: linear-gradient(currentColor, currentColor) 100% 100% / 0 1px no-repeat;
+    transition: background-size 0.35s ease;
+  }
+  .link-draw:hover { background-size: 100% 1px; }
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
