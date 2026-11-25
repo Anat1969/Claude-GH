@@ -22,6 +22,13 @@ const MARK = 'Anat1969/Claude-GH/main/tools/context-map.mjs';
 export const HOOK_COMMAND =
   `f="\${TMPDIR:-/tmp}/anat-context-map.mjs"; curl -fsS -o "$f" ${RAW} && node "$f" code "\${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null && echo "CODEMAP.md is ready in the repo root. Read it before opening source files. Report these numbers in the token-saving line at the end of the session."; exit 0`;
 
+// סבב השדרוג (ענת, 25.11.2026: "כל שיחה שתיפתח עבור כל אפליקציה תתחיל בשדרוגים האלה"):
+// hook שני, בכל רמה וגם ברמה 0, שמדפיס בתחילת כל שיחה את רשימת השדרוג מ-context/UPGRADE.md.
+const UPGRADE_RAW = 'https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/UPGRADE.md';
+const UPGRADE_MARK = 'Anat1969/Claude-GH/main/context/UPGRADE.md';
+export const UPGRADE_COMMAND =
+  `curl -fsS ${UPGRADE_RAW} 2>/dev/null || echo "סבב השדרוג: https://github.com/Anat1969/Claude-GH/blob/main/docs/upgrade-playbook.md"`;
+
 const CODE_EXT = /\.(tsx?|jsx?|mjs|cjs|vue|svelte|py|sql|css|html)$/;
 const SKIP = /(^|\/)(node_modules|dist|build|\.next|coverage|vendor|gh-pages)\//;
 
@@ -44,6 +51,18 @@ function measure(dir) {
 function levelOf({ files, lines }) {
   if (files < 20 && lines < 1_500) return 0;
   return lines > 20_000 ? 2 : 1;
+}
+
+function installUpgradeHook(dir) {
+  const p = path.join(dir, '.claude', 'settings.json');
+  const settings = fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : {};
+  settings.hooks ??= {};
+  settings.hooks.SessionStart ??= [];
+  const present = JSON.stringify(settings.hooks.SessionStart).includes(UPGRADE_MARK);
+  if (!present) settings.hooks.SessionStart.unshift({ hooks: [{ type: 'command', command: UPGRADE_COMMAND, timeout: 15 }] });
+  fs.mkdirSync(path.dirname(p), { recursive: true });
+  fs.writeFileSync(p, JSON.stringify(settings, null, 2) + '\n');
+  return present ? 'upgrade hook already installed' : 'upgrade hook installed';
 }
 
 function installHook(dir) {
@@ -72,5 +91,8 @@ const level = levelOf(m);
 let action = 'nothing to install';
 if (level > 0 && flag !== '--dry') action = installHook(dir);
 else if (level > 0) action = 'would install';
+// סבב השדרוג נכנס בכל רמה
+const upgrade = flag === '--dry' ? 'would install upgrade hook' : installUpgradeHook(dir);
+action += `; ${upgrade}`;
 const note = level === 2 ? '; consider Graphify (docs/token-economy.md, section 5)' : '';
 console.log(`level ${level}: ${m.files} code files, ${m.lines} lines; ${action}${note}`);
