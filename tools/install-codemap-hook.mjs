@@ -26,8 +26,11 @@ export const HOOK_COMMAND =
 // hook שני, בכל רמה וגם ברמה 0, שמדפיס בתחילת כל שיחה את רשימת השדרוג מ-context/UPGRADE.md.
 const UPGRADE_RAW = 'https://raw.githubusercontent.com/Anat1969/Claude-GH/main/context/UPGRADE.md';
 const UPGRADE_MARK = 'Anat1969/Claude-GH/main/context/UPGRADE.md';
+const HEALTH_RAW = 'https://raw.githubusercontent.com/Anat1969/Claude-GH/main/tools/repo-health.sh';
 export const UPGRADE_COMMAND =
-  `curl -fsS ${UPGRADE_RAW} 2>/dev/null || echo "סבב השדרוג: https://github.com/Anat1969/Claude-GH/blob/main/docs/upgrade-playbook.md"`;
+  `curl -fsS ${UPGRADE_RAW} 2>/dev/null || echo "סבב השדרוג: https://github.com/Anat1969/Claude-GH/blob/main/docs/upgrade-playbook.md"; ` +
+  // בדיקת תשתית (26.11.2026): ענף ראשי main וענפים שלא מוזגו. נטען מ-Claude-GH, קריאה בלבד.
+  `curl -fsS ${HEALTH_RAW} 2>/dev/null | bash -s -- "\${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null; exit 0`;
 
 const CODE_EXT = /\.(tsx?|jsx?|mjs|cjs|vue|svelte|py|sql|css|html)$/;
 const SKIP = /(^|\/)(node_modules|dist|build|\.next|coverage|vendor|gh-pages)\//;
