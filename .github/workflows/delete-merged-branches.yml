@@ -1,0 +1,42 @@
+# מחיקת ענפים שכבר מוזגו ל-main, לפי הרשימה ב-docs/branch-cleanup-*.md
+# מופעל ידנית בלבד: Actions, "מחיקת ענפים ממוזגים", Run workflow.
+# ענף נמחק רק אם הקומיט שלו זהה לקומיט שנרשם ברשימה. ענף שהשתנה מאז הבדיקה נשאר.
+name: מחיקת ענפים ממוזגים
+
+on:
+  workflow_dispatch:
+    inputs:
+      list:
+        description: "קובץ הרשימה"
+        required: true
+        default: "docs/branch-cleanup-2026-11-26.md"
+
+permissions:
+  contents: write
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: מחיקה
+        env:
+          LIST: ${{ inputs.list }}
+        run: |
+          set -u
+          deleted=0; skipped=0; missing=0
+          grep -oE '^\| `[^`]+` \| `[0-9a-f]{40}`' "$LIST" | sed -E 's/^\| `([^`]+)` \| `([0-9a-f]+)`/\1 \2/' > pairs.txt
+          echo "ענפים ברשימה: $(wc -l < pairs.txt)"
+          while read -r name sha; do
+            case "$name" in main|master) echo "דילוג על $name"; continue;; esac
+            current=$(git ls-remote origin "refs/heads/$name" | cut -f1)
+            if [ -z "$current" ]; then missing=$((missing+1)); continue; fi
+            if [ "$current" != "$sha" ]; then
+              echo "נשאר (השתנה מאז הבדיקה): $name"; skipped=$((skipped+1)); continue
+            fi
+            if git push -q origin --delete "$name"; then deleted=$((deleted+1)); else echo "נכשל: $name"; skipped=$((skipped+1)); fi
+          done < pairs.txt
+          echo "נמחקו: $deleted. נשארו: $skipped. כבר לא היו קיימים: $missing."
+          echo "### נמחקו $deleted ענפים, נשארו $skipped, כבר לא היו קיימים $missing" >> "$GITHUB_STEP_SUMMARY"
