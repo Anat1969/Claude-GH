@@ -25,6 +25,8 @@
 
 - **ענף ברירת מחדל שאינו main** (26.11.2026, Claude-GH): ענת שמרה קובץ דרך אתר GitHub, והוא נכנס לענף עבודה ישן שהוגדר כברירת מחדל, ולא ל-main. לכל ריפו שנבדק מריצים `git ls-remote --symref https://github.com/<owner>/<repo> HEAD`. אם השורה הראשונה אינה `refs/heads/main`, נרשם באפליקציה `default_branch` עם שם הענף, ושורת todo: "<שם האפליקציה>: ענף ברירת המחדל הוא <ענף>, לשנות ל-main ב-Settings, Default branch". הבדיקה לא משנה את `status`, אבל השורה עולה לראש ה-todo הכללי, כי כל שמירה מהאתר הולכת לאיבוד עד שמתקנים.
 
+- **עבודה שממתינה יותר מיומיים** (26.11.2026, ענת אישרה): מסמך ההצעות מ-18.11 נתקע שמונה ימים בבקשת מיזוג פתוחה, כי הבדיקה סימנה רק ענפים עם קומיט מהיום. מעכשיו כל ריפו מהרשימה נבדק גם בלי עבודה ביום, וכל ענף עם תוכן שלא ב-main שהקומיט האחרון שלו (`last`) ישן מ-**48** שעות נרשם בשורת todo: "<שם האפליקציה>: עבודה בענף <ענף> ממתינה <ימים> ימים: <subject>". זה תופס גם בקשת מיזוג פתוחה, כי היא תמיד יושבת על ענף. כש-`behind` מעל 10, הפעולה היא "לבנות מחדש על main". השורות עולות ל-todo הכללי מיד אחרי ענף ברירת מחדל שגוי.
+
 ## הכלי
 `tools/merge-check.sh --discover <since-iso> <file>`: מחזיר את הריפו מתוך הקובץ שיש בהם קומיט בחלון.
 `tools/merge-check.sh <since-iso> owner/repo ...`: בדיקת המיזוג. סוף החלון ב-`UNTIL=<iso>`.
@@ -42,6 +44,7 @@ git בלבד, בלי gh, כדי שיעבוד בלי הרשאת API.
 3. אילו אפליקציות: list_repos (limit 200) ובחר כל ריפו של Anat1969 עם pushed_at בתוך החלון או אחריו. אל תכלול את Claude-GH.
 4. מיזוג: git clone --depth 1 https://github.com/Anat1969/Claude-GH /tmp/cgh, והרץ: bash /tmp/cgh/tools/merge-check.sh <תחילת החלון ב-UTC> <כל הריפו>. ריפו שלא נעשה בו קומיט בחלון, לא ב-main ולא בענף (recent=0 ו-main_commits_today=0), יוצא מהדוח.
 4א. ענף ברירת מחדל: לכל ריפו שנשאר בדוח, git ls-remote --symref https://github.com/<owner>/<repo> HEAD. אם הענף אינו main, הוסף לאפליקציה default_branch ושורת todo לשינוי ל-main, בראש ה-todo הכללי.
+4ב. עבודה ממתינה: merge-check.sh --discover עם since של 30 ימים אחורה על docs/repos.txt (מהיר, בלי קבצים), ואז merge-check.sh על הריפו שנמצאו. כל ענף שה-last שלו ישן מ-48 שעות נרשם לפי הכללים במסמך. לא ממזגים ולא מוחקים.
 5. פריסה: Vercel, צוות team_UNONu5KtfgMgLtVno6fdCtrQ. list_deployments עם target=production ו-since=תחילת החלון, ולפי הצורך list_projects עם repo=<שם הריפו>. בדוק שה-sha של main (main_sha) נפרס ב-READY. פריסה CANCELED או ERROR של main: not_deployed או failed. ריפו שאין לו פרויקט ב-Vercel: חפש ב-aoa_apps את previewUrl שלו, ובדוק מאיזה ריפו נפרס הפרויקט הזה.
 6. שם וכתובת: aoa_apps ב-Supabase ktqmwpbzcnzkhjskqisy, לפי data->>'githubUrl'. השם מ-data->>'name', והכתובת מ-data->>'previewUrl'.
 7. ניסוח: done הוא מה שנעשה ביום, משפט או שניים בעברית, מזוקק מהודעות הקומיט (main_subjects והענפים). todo הוא הפעולה הנדרשת, משפט אחד, או null כשהכול תקין. ענף פתוח ישן מהחלון נכנס רק אם הריפו נבדק היום, ומוזכר ב-branches. headline: עד 8 מילים, התובנה של הלילה, למשל "שתיים לא נפרסו, ארבע ממתינות למיזוג" או "הכול מוזג ונפרס". todo הכללי: עד 5 שורות, הדחוף קודם, כל שורה פותחת בשם האפליקציה.
