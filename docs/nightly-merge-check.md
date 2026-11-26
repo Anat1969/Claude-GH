@@ -23,6 +23,8 @@
 
 - **ענף מבסיס ישן לא ממזגים ישירות** (18.11.2026, פודטראקים): הענף נחתך מגרסה מיוני, ו-main קיבל מאז יותר מ-20 מיזוגים. בניסיון מיזוג התנגשו 14 קבצים, והענף גם מבטל את הגנת העריכה. השדה `behind` בכל ענף מראה כמה קומיטים נכנסו ל-main מאז שנחתך. מעל **10**, ה-todo הוא "לבנות מחדש על main" ולא "למזג".
 
+- **ענף ברירת מחדל שאינו main** (26.11.2026, Claude-GH): ענת שמרה קובץ דרך אתר GitHub, והוא נכנס לענף עבודה ישן שהוגדר כברירת מחדל, ולא ל-main. לכל ריפו שנבדק מריצים `git ls-remote --symref https://github.com/<owner>/<repo> HEAD`. אם השורה הראשונה אינה `refs/heads/main`, נרשם באפליקציה `default_branch` עם שם הענף, ושורת todo: "<שם האפליקציה>: ענף ברירת המחדל הוא <ענף>, לשנות ל-main ב-Settings, Default branch". הבדיקה לא משנה את `status`, אבל השורה עולה לראש ה-todo הכללי, כי כל שמירה מהאתר הולכת לאיבוד עד שמתקנים.
+
 ## הכלי
 `tools/merge-check.sh --discover <since-iso> <file>`: מחזיר את הריפו מתוך הקובץ שיש בהם קומיט בחלון.
 `tools/merge-check.sh <since-iso> owner/repo ...`: בדיקת המיזוג. סוף החלון ב-`UNTIL=<iso>`.
@@ -39,6 +41,7 @@ git בלבד, בלי gh, כדי שיעבוד בלי הרשאת API.
 2. הכללים: קרא את https://raw.githubusercontent.com/Anat1969/Claude-GH/main/docs/nightly-merge-check.md
 3. אילו אפליקציות: list_repos (limit 200) ובחר כל ריפו של Anat1969 עם pushed_at בתוך החלון או אחריו. אל תכלול את Claude-GH.
 4. מיזוג: git clone --depth 1 https://github.com/Anat1969/Claude-GH /tmp/cgh, והרץ: bash /tmp/cgh/tools/merge-check.sh <תחילת החלון ב-UTC> <כל הריפו>. ריפו שלא נעשה בו קומיט בחלון, לא ב-main ולא בענף (recent=0 ו-main_commits_today=0), יוצא מהדוח.
+4א. ענף ברירת מחדל: לכל ריפו שנשאר בדוח, git ls-remote --symref https://github.com/<owner>/<repo> HEAD. אם הענף אינו main, הוסף לאפליקציה default_branch ושורת todo לשינוי ל-main, בראש ה-todo הכללי.
 5. פריסה: Vercel, צוות team_UNONu5KtfgMgLtVno6fdCtrQ. list_deployments עם target=production ו-since=תחילת החלון, ולפי הצורך list_projects עם repo=<שם הריפו>. בדוק שה-sha של main (main_sha) נפרס ב-READY. פריסה CANCELED או ERROR של main: not_deployed או failed. ריפו שאין לו פרויקט ב-Vercel: חפש ב-aoa_apps את previewUrl שלו, ובדוק מאיזה ריפו נפרס הפרויקט הזה.
 6. שם וכתובת: aoa_apps ב-Supabase ktqmwpbzcnzkhjskqisy, לפי data->>'githubUrl'. השם מ-data->>'name', והכתובת מ-data->>'previewUrl'.
 7. ניסוח: done הוא מה שנעשה ביום, משפט או שניים בעברית, מזוקק מהודעות הקומיט (main_subjects והענפים). todo הוא הפעולה הנדרשת, משפט אחד, או null כשהכול תקין. ענף פתוח ישן מהחלון נכנס רק אם הריפו נבדק היום, ומוזכר ב-branches. headline: עד 8 מילים, התובנה של הלילה, למשל "שתיים לא נפרסו, ארבע ממתינות למיזוג" או "הכול מוזג ונפרס". todo הכללי: עד 5 שורות, הדחוף קודם, כל שורה פותחת בשם האפליקציה.
