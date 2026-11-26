@@ -32,5 +32,35 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "mcp__Supabase",
+      "mcp__Vercel",
+      "Bash(git:*)",
+      "Bash(gh:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(pnpm:*)",
+      "Bash(vercel:*)",
+      "Bash(supabase:*)",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "ask": [
+      "mcp__Supabase__pause_project",
+      "mcp__Supabase__delete_branch",
+      "mcp__Supabase__reset_branch",
+      "mcp__Supabase__create_project",
+      "mcp__Vercel__buy_domain",
+      "mcp__Vercel__create_or_transfer_domain",
+      "mcp__Vercel__pause_project",
+      "mcp__Vercel__get_project_deletion_link",
+      "mcp__Vercel__delete_drive",
+      "mcp__Vercel__replace_domain_dns_records",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
+    ]
   }
 }
